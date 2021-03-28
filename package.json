@@ -27,7 +27,28 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "lint": "eslint --max-warnings=0",
+    "lint:fix": "yarn lint --fix",
+    "lint:all": "yarn lint \"**/*.+(js|jsx|ts|tsx)\"",
+    "lint:fix:all": "yarn lint:fix \"**/*.+(js|jsx|ts|tsx)\"",
+    "format:all": "yarn format \"**/*.+(js|jsx|html|css|yaml|json|ts|tsx)\"",
+    "format": "prettier --write",
+    "check-types": "tsc --noemit -p tsconfig.json"
+  },
+  "lint-staged": {
+    "*.+(json|yml|yaml|css|less|scss|html)": [
+      "yarn format"
+    ],
+    "*.+(js|jsx|ts|tsx)": [
+      "yarn lint:fix",
+      "yarn format"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn check-types && yarn lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +76,8 @@
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.1.21",
     "@types/react-map-gl": "^5.2.9",
-    "@types/styled-components": "^5.1.9"
+    "@types/styled-components": "^5.1.9",
+    "eslint": "^7.23.0",
+    "prettier": "2.2.1"
   }
 }
