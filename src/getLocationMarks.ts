@@ -1,12 +1,11 @@
 import { getYear } from 'date-fns';
 
-import { LocationsType } from './locations';
+import { LocationsType } from './Map/locations';
 
 interface LocationMarkType {
   value: number;
   label: string;
 }
-
 
 const THIS_YEAR = getYear(new Date());
 
@@ -16,7 +15,10 @@ export function getLocationMarks(
   const sortedLocations = sortLocationsByYear(locations);
   const locationsWithActualYear = addActualYearToLocations(sortedLocations);
 
-  const MAX_LOCATION_DIFFERENCE = (sortedLocations[sortedLocations.length-1].year - sortedLocations[0].year)/10;
+  const MAX_LOCATION_DIFFERENCE =
+    (sortedLocations[sortedLocations.length - 1].year -
+      sortedLocations[0].year) /
+    10;
 
   let formattedMarks: LocationMarkType[] = [];
   locationsWithActualYear.forEach(location => {
@@ -73,4 +75,9 @@ export function addActualYearToLocations(
         : location
     );
   }
+}
+
+export function getLastLocation(year:number, locations: LocationsType[]):LocationsType{
+  const sortedLocations = sortLocationsByYear(locations).reverse();
+  return sortedLocations.find(location=>location.year<=year) ?? locations[0]
 }

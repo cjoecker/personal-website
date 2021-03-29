@@ -1,9 +1,10 @@
 import { getYear } from 'date-fns';
 
 import {
-    abbreviateYear,
-    addActualYearToLocations, getLocationMarks,
-    sortLocationsByYear,
+  abbreviateYear,
+  addActualYearToLocations, getLastLocation,
+  getLocationMarks,
+  sortLocationsByYear,
 } from './getLocationMarks';
 
 const FAKE_TODAY = new Date('2021-06-01');
@@ -18,7 +19,7 @@ const LocationMock = {
 
 describe('getLocationMarks', () => {
   beforeEach(() =>
-      jest.useFakeTimers('modern').setSystemTime(FAKE_TODAY.getTime())
+    jest.useFakeTimers('modern').setSystemTime(FAKE_TODAY.getTime())
   );
   it('should return location marks', () => {
     const Locations = [
@@ -41,15 +42,13 @@ describe('getLocationMarks', () => {
       { value: 1998, label: '' },
       { value: 2007, label: "'07" },
       { value: 2019, label: "'19" },
-      { value: 2020, label: "" },
-      { value: 2021, label: "" },
+      { value: 2020, label: '' },
+      { value: 2021, label: '' },
     ];
 
-    expect(getLocationMarks(Locations)).toEqual(LocationMockMarks)
+    expect(getLocationMarks(Locations)).toEqual(LocationMockMarks);
   });
 });
-
-
 
 describe('sortLocationsByYear', () => {
   it('should sort locations by year', () => {
@@ -114,5 +113,28 @@ describe('add last year', () => {
     ];
 
     expect(addActualYearToLocations(Locations)).toEqual(newLocations);
+  });
+});
+
+describe('getLastLocation', () => {
+  it('should get last location if year doesn\'t exists', () => {
+    const year = 1994
+    const Locations = [
+      { ...LocationMock, year: 1991 },
+      { ...LocationMock, year: 1992 },
+      { ...LocationMock, year: 1995 },
+    ];
+    const lastLocation = { ...LocationMock, year: 1992 }
+    expect(getLastLocation(year,Locations)).toEqual(lastLocation);
+  });
+  it('should get last location if year exists', () => {
+    const year = 1992
+    const Locations = [
+      { ...LocationMock, year: 1991 },
+      { ...LocationMock, year: 1992 },
+      { ...LocationMock, year: 1995 },
+    ];
+    const lastLocation = { ...LocationMock, year: 1992 }
+    expect(getLastLocation(year,Locations)).toEqual(lastLocation);
   });
 });
