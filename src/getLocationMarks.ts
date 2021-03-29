@@ -17,9 +17,7 @@ export function getLocationMarks(
 
   const MAX_LOCATION_DIFFERENCE = (sortedLocations[sortedLocations.length-1].year - sortedLocations[0].year)/10;
 
-
   let formattedMarks: LocationMarkType[] = [];
-
   locationsWithActualYear.forEach(location => {
     const marksOfLastYears = formattedMarks.filter(
       mark => mark.value + MAX_LOCATION_DIFFERENCE >= location.year
@@ -45,12 +43,6 @@ export function getLocationMarks(
   });
 
   return formattedMarks;
-}
-
-export function addTodayToMarks(marks: LocationMarkType[]) {
-  const lastMark = marks[marks.length - 1];
-
-  return lastMark.value;
 }
 
 export function sortLocationsByYear(

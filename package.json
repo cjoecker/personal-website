@@ -89,6 +89,7 @@
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.0",
     "eslint-plugin-unused-imports": "^1.1.0",
+    "husky": "^6.0.0",
     "prettier": "2.2.1"
   }
 }

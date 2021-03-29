@@ -1,4 +1,3 @@
-import { LocationsType } from './locations';
 import {
     abbreviateYear,
     addActualYearToLocations, getLocationMarks,
