@@ -1,5 +1,5 @@
-import React from 'react'
 import {Paper, Slider, Typography} from "@material-ui/core";
+import React from 'react'
 import styled from "styled-components";
 
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from "styled-components";
 import ReactMapGL, {Marker} from 'react-map-gl';
-import LocationSlider from "./LocationSlider";
+import styled from "styled-components";
+
 import {getLocationMarks} from "./getLocationMarks";
 import {Locations} from "./locations";
+import LocationSlider from "./LocationSlider";
 
 const marks = [
     {

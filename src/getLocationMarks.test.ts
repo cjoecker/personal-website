@@ -1,9 +1,10 @@
+import { getYear } from 'date-fns';
+
 import {
     abbreviateYear,
     addActualYearToLocations, getLocationMarks,
     sortLocationsByYear,
 } from './getLocationMarks';
-import { getYear } from 'date-fns';
 
 const FAKE_TODAY = new Date('2021-06-01');
 

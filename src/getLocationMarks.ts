@@ -1,4 +1,5 @@
 import { getYear } from 'date-fns';
+
 import { LocationsType } from './locations';
 
 interface LocationMarkType {

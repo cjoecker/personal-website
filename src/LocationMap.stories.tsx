@@ -1,6 +1,6 @@
+import {Story} from '@storybook/react';
 import React, {ComponentProps} from 'react';
 
-import {Story} from '@storybook/react';
 
 import LocationMap from "./LocationMap";
 
