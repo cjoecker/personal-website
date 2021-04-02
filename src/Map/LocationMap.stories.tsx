@@ -7,7 +7,7 @@ export default {
   title: 'Location Map',
   component: LocationMap,
 };
-const Template: Story<ComponentProps<typeof LocationMap>> = args => (
+const Template: Story<ComponentProps<typeof LocationMap>> = () => (
   <LocationMap />
 );
 

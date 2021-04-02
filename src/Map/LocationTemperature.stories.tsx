@@ -1,9 +1,6 @@
 import { Story } from '@storybook/react';
 import React, { ComponentProps } from 'react';
-import styled from 'styled-components';
 
-import LocationSlider from './LocationSlider';
-import LocationDashboard from "./LocationDashboard";
 import LocationTemperature from "./LocationTemperature";
 
 export default {

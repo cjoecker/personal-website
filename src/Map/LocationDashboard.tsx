@@ -1,19 +1,14 @@
-import { Paper, Slider, Typography } from '@material-ui/core';
-import { getYear } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import { Paper, Typography } from '@material-ui/core';
+import React, {useEffect} from 'react';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import { useEffectUnsafe } from '../unsafeHooks';
+
+import { fetchWeather } from '../api';
 import { LocationsType } from '../constants/locations';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { fetchWeather, WEATHER_RESPONSE } from '../api';
-import LocationTemperature from './LocationTemperature';
-
 import {weatherCodes} from "../constants/weatherCodes";
-import {getWeatherImagePath} from "./utils/locationUtils";
 
-function valuetext(value: number) {
-  return `Year ${value}`;
-}
+import LocationTemperature from './LocationTemperature';
+import {getWeatherImagePath} from "./utils/locationUtils";
 
 interface LocationSliderProps {
   location: LocationsType;
@@ -23,11 +18,17 @@ export default function LocationDashboard({ location }: LocationSliderProps) {
   const {
     data,
     isLoading,
-    isError,
     error,
   } = useQuery(`weatherFrom${location.city}`, () => fetchWeather(location));
 
   const weatherCode = data ? data.current.condition.code : undefined
+
+  useEffect(() => {
+    if(error){
+      console.error(error)
+    }
+  }, [error]);
+
 
   return (
     <Paper>

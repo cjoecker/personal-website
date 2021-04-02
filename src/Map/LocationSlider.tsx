@@ -1,7 +1,8 @@
 import {Mark, Paper, Slider, Typography} from '@material-ui/core';
 import { getYear } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import {useEffectUnsafe} from "../unsafeHooks";
 
 function valuetext(value: number) {

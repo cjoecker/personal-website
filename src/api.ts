@@ -1,11 +1,8 @@
 import * as queryString from 'querystring';
+
 import {LocationsType} from "./constants/locations";
 
 const WEATHER_URL = 'http://api.weatherapi.com/v1/current.json';
-interface WEATHER_PARAMS {
-  key: string;
-  q: string;
-}
 
 export interface WEATHER_RESPONSE {
   current: {

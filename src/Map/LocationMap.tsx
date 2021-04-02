@@ -1,16 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import ReactMapGL, {FlyToInterpolator, Marker, TransitionInterpolator} from 'react-map-gl';
+import { easeSinInOut} from "d3-ease";
+import React, { useState} from 'react';
+import ReactMapGL, {FlyToInterpolator, Marker} from 'react-map-gl';
 import {ViewportProps} from "react-map-gl/dist/es5/utils/map-state";
+import {QueryClient, QueryClientProvider} from "react-query";
 import styled from 'styled-components';
 
-import {getLastLocation, locationUtils} from './utils/locationUtils';
 
 import { Locations } from '../constants/locations';
-import LocationSlider from './LocationSlider';
-import {easeCubic, easeCubicInOut, easeQuad, easeQuadInOut, easeSinInOut} from "d3-ease";
-import LocationDashboard from "./LocationDashboard";
 import {useEffectUnsafe} from "../unsafeHooks";
-import {QueryClient, QueryClientProvider} from "react-query";
+
+import LocationDashboard from "./LocationDashboard";
+import LocationSlider from './LocationSlider';
+import {getLastLocation, locationUtils} from './utils/locationUtils';
+
 
 const queryClient = new QueryClient()
 

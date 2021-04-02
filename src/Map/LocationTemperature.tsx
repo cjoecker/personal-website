@@ -1,15 +1,6 @@
-import {CircularProgress, Paper, Slider, Typography} from '@material-ui/core';
-import { getYear } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import {CircularProgress, Typography} from '@material-ui/core';
+import React from 'react';
 import styled from 'styled-components';
-import { useEffectUnsafe } from '../unsafeHooks';
-import { LocationsType } from '../constants/locations';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { fetchWeather, WEATHER_RESPONSE } from '../api';
-
-function valuetext(value: number) {
-  return `Year ${value}`;
-}
 
 interface LocationSliderProps {
   temperature: number | null;
