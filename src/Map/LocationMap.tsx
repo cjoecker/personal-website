@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactMapGL, {FlyToInterpolator, Marker, TransitionInterpolator} from 'react-map-gl';
 import {ViewportProps} from "react-map-gl/dist/es5/utils/map-state";
 import styled from 'styled-components';
 
-import {getLastLocation, getLocationMarks} from '../getLocationMarks';
+import {getLastLocation, locationUtils} from './utils/locationUtils';
 
-import { Locations } from './locations';
+import { Locations } from '../constants/locations';
 import LocationSlider from './LocationSlider';
 import {easeCubic, easeCubicInOut, easeQuad, easeQuadInOut, easeSinInOut} from "d3-ease";
+import LocationDashboard from "./LocationDashboard";
+import {useEffectUnsafe} from "../unsafeHooks";
+import {QueryClient, QueryClientProvider} from "react-query";
 
-
+const queryClient = new QueryClient()
 
 
 //TODO move map access token to env
 export default function LocationMap() {
+  const [location, setLocation] = useState(Locations[0]);
+
   const [viewport, setViewport] = useState<ViewportProps>({
     latitude: Locations[0].latitude,
     longitude: Locations[0].longitude,
@@ -26,24 +31,27 @@ export default function LocationMap() {
   });
 
   const handleYearChange = (year: number)=>{
-    const coordinates = getLastLocation(year,Locations)
-    if(coordinates){
-      setViewport({
-        ...viewport,
-        latitude: coordinates.latitude,
-        longitude: coordinates.longitude,
-        transitionInterpolator: new FlyToInterpolator(),
-        transitionEasing: easeSinInOut
-      })
-      setMarkerPos({
-        latitude: coordinates.latitude,
-        longitude: coordinates.longitude,
-      })
-
-    }
+    setLocation(getLastLocation(year,Locations))
   }
 
+  useEffectUnsafe(() => {
+    setViewport({
+      ...viewport,
+      latitude: location.latitude,
+      longitude: location.longitude,
+      transitionInterpolator: new FlyToInterpolator(),
+      transitionDuration: 2000,
+      transitionEasing: easeSinInOut
+    })
+    setMarkerPos({
+      latitude: location.latitude,
+      longitude: location.longitude,
+    })
+  }, [location]);
+
+
   return (
+      <QueryClientProvider client={queryClient}>
     <LocationBox>
       <ReactMapGL
         {...viewport}
@@ -66,22 +74,22 @@ export default function LocationMap() {
       </ReactMapGL>
       <StyledDiv position={'top'}>
         <Margins>
-          <LocationSlider marks={getLocationMarks(Locations)} onChangeYear={handleYearChange} />
+          <LocationSlider marks={locationUtils(Locations)} onChangeYear={handleYearChange} />
         </Margins>
       </StyledDiv>
       <StyledDiv position={'bottom'}>
         <Margins>
-          {/*<LocationSlider marks={marks} />*/}
+          <LocationDashboard location={location}/>
         </Margins>
       </StyledDiv>
     </LocationBox>
+      </QueryClientProvider>
   );
 }
 
 const LocationBox = styled.div`
   max-width: 300px;
   height: 500px;
-  background-color: red;
   position: relative;
 `;
 

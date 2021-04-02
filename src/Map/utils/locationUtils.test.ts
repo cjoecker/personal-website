@@ -2,10 +2,10 @@ import { getYear } from 'date-fns';
 
 import {
   abbreviateYear,
-  addActualYearToLocations, getLastLocation,
-  getLocationMarks,
+  addActualYearToLocations, getLastLocation, getWeatherImagePath,
+  locationUtils,
   sortLocationsByYear,
-} from './getLocationMarks';
+} from './locationUtils';
 
 const FAKE_TODAY = new Date('2021-06-01');
 
@@ -46,7 +46,7 @@ describe('getLocationMarks', () => {
       { value: 2021, label: '' },
     ];
 
-    expect(getLocationMarks(Locations)).toEqual(LocationMockMarks);
+    expect(locationUtils(Locations)).toEqual(LocationMockMarks);
   });
 });
 
@@ -136,5 +136,12 @@ describe('getLastLocation', () => {
     ];
     const lastLocation = { ...LocationMock, year: 1992 }
     expect(getLastLocation(year,Locations)).toEqual(lastLocation);
+  });
+});
+
+describe('getWeatherImagePath', () => {
+  it('should return right weather image', () => {
+    expect(getWeatherImagePath(1000,true)).toEqual("./images/clearDay.svg");
+    expect(getWeatherImagePath(1003,false)).toEqual("./images/partlyCloudyNight.svg");
   });
 });

@@ -1,6 +1,7 @@
 import { getYear } from 'date-fns';
 
-import { LocationsType } from './Map/locations';
+import { LocationsType } from '../../constants/locations';
+import {weatherCodes} from "../../constants/weatherCodes";
 
 interface LocationMarkType {
   value: number;
@@ -9,7 +10,7 @@ interface LocationMarkType {
 
 const THIS_YEAR = getYear(new Date());
 
-export function getLocationMarks(
+export function locationUtils(
   locations: LocationsType[]
 ): LocationMarkType[] {
   const sortedLocations = sortLocationsByYear(locations);
@@ -80,4 +81,9 @@ export function addActualYearToLocations(
 export function getLastLocation(year:number, locations: LocationsType[]):LocationsType{
   const sortedLocations = sortLocationsByYear(locations).reverse();
   return sortedLocations.find(location=>location.year<=year) ?? locations[0]
+}
+
+export function getWeatherImagePath(weatherCode: number, isDay: boolean):string{
+  const dayOrNight = isDay ? "Day" : "Night";
+  return `./images/${weatherCodes.get(weatherCode)}${dayOrNight}.svg`
 }

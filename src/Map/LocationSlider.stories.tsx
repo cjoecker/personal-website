@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import LocationSlider from './LocationSlider';
 
 export default {
-  title: 'LocationSlider',
+  title: 'Location Slider',
   component: LocationSlider,
 };
 const Template: Story<ComponentProps<typeof LocationSlider>> = args => (
-  <SliderWrapper>
+  <MaxWidthWrapper>
     <LocationSlider {...args} />
-  </SliderWrapper>
+  </MaxWidthWrapper>
 );
 
 export const Default = Template.bind({});
@@ -48,6 +48,6 @@ Default.args = {
   ],
 };
 
-const SliderWrapper = styled.div`
+const MaxWidthWrapper = styled.div`
   max-width: 300px;
 `;

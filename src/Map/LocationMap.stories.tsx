@@ -4,12 +4,12 @@ import React, { ComponentProps } from 'react';
 import LocationMap from './LocationMap';
 
 export default {
-  title: 'LocationMap',
+  title: 'Location Map',
   component: LocationMap,
 };
 const Template: Story<ComponentProps<typeof LocationMap>> = args => (
   <LocationMap />
 );
 
-export const FirstStory = Template.bind({});
-FirstStory.args = {};
+export const Default = Template.bind({});
+Default.args = {};

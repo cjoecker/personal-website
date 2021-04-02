@@ -1,4 +1,4 @@
-import { Paper, Slider, Typography } from '@material-ui/core';
+import {Mark, Paper, Slider, Typography} from '@material-ui/core';
 import { getYear } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -9,13 +9,8 @@ function valuetext(value: number) {
 }
 
 interface LocationSliderProps {
-  marks: YearMarks[];
+  marks: Mark[];
   onChangeYear: (year:number) => void;
-}
-
-interface YearMarks {
-  value: number;
-  label: string;
 }
 
 export default function LocationSlider({
@@ -39,7 +34,7 @@ export default function LocationSlider({
       clearTimeout(debounceTimer);
     };
   }, [year]);
-
+//TODO add slider min max automatically
   return (
     <Paper>
       <TitleWrapper>

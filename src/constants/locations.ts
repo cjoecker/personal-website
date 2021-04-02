@@ -30,7 +30,7 @@ export const Locations: LocationsType[] = [
   },
   {
     year: 2011,
-    city: 'Berlin',
+    city: 'Wildau',
     country: 'Germany',
     latitude: 52.319534,
     longitude: 13.631231,
