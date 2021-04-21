@@ -8,7 +8,7 @@ interface LocationMarkType {
   label: string;
 }
 
-const THIS_YEAR = getYear(new Date());
+export const THIS_YEAR = getYear(new Date());
 
 export function locationUtils(
   locations: LocationsType[]
@@ -18,8 +18,8 @@ export function locationUtils(
 
   const MAX_LOCATION_DIFFERENCE =
     (sortedLocations[sortedLocations.length - 1].year -
-      sortedLocations[0].year) /
-    10;
+      sortedLocations[0].year) *
+    0.075;
 
   let formattedMarks: LocationMarkType[] = [];
   locationsWithActualYear.forEach(location => {

@@ -19,7 +19,7 @@ export default function LocationDashboard({ location }: LocationSliderProps) {
     data,
     isLoading,
     error,
-  } = useQuery(`weatherFrom${location.city}`, () => fetchWeather(location));
+  } = useQuery(['weather',location.city], () => fetchWeather(location));
 
   const weatherCode = data ? data.current.condition.code : undefined
 

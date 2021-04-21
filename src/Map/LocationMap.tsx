@@ -59,7 +59,7 @@ export default function LocationMap() {
         {...viewport}
         width="100%"
         height="100%"
-        mapStyle="mapbox://styles/mapbox/dark-v8"
+        mapStyle="mapbox://styles/cjoecker/ckmpee9hy024v17o553pu11hv"
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         onViewportChange={(viewport: ViewportProps) => setViewport(viewport)}
       >

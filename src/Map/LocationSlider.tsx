@@ -1,9 +1,11 @@
-import {Mark, Paper, Slider, Typography} from '@material-ui/core';
+import { Mark, Paper, Slider, Typography } from '@material-ui/core';
 import { getYear } from 'date-fns';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {useEffectUnsafe} from "../unsafeHooks";
+import { useEffectUnsafe } from '../unsafeHooks';
+
+import { THIS_YEAR } from './utils/locationUtils';
 
 function valuetext(value: number) {
   return `Year ${value}`;
@@ -11,7 +13,7 @@ function valuetext(value: number) {
 
 interface LocationSliderProps {
   marks: Mark[];
-  onChangeYear: (year:number) => void;
+  onChangeYear: (year: number) => void;
 }
 
 export default function LocationSlider({
@@ -26,16 +28,16 @@ export default function LocationSlider({
 
   useEffectUnsafe(() => {
     const debounceTimer = setTimeout(() => {
-        if(!Array.isArray(year)){
-          onChangeYear(year);
-        }
+      if (!Array.isArray(year)) {
+        onChangeYear(year);
+      }
     }, 100);
 
     return () => {
       clearTimeout(debounceTimer);
     };
   }, [year]);
-//TODO add slider min max automatically
+  //TODO add slider min max automatically
   return (
     <Paper>
       <TitleWrapper>
@@ -43,16 +45,18 @@ export default function LocationSlider({
       </TitleWrapper>
       <SliderWrapper>
         <Slider
+          track={false}
           value={year}
           onChange={handleChange}
-          defaultValue={2021}
-          min={1991}
-          max={2021}
+          defaultValue={THIS_YEAR}
+          min={marks[0].value}
+          max={marks[marks.length - 1].value}
           getAriaValueText={valuetext}
           aria-labelledby="discrete-slider-custom"
           step={1}
           valueLabelDisplay="auto"
           marks={marks}
+          valueLabelFormat={year => (year === THIS_YEAR ? 'Today' : year)}
         />
       </SliderWrapper>
     </Paper>
