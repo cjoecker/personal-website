@@ -18,10 +18,15 @@ const Template: Story<ComponentProps<typeof SkillsMap
 export const Default = Template.bind({});
 Default.args = {
   skills:[
-    {skillName: "UX Design", level: 7},
-    {skillName: "UI Design", level: 6},
-    {skillName: "Adobe XD", level: 5},
-    {skillName: "User Tests", level: 7}
+    {skillName: "UX Design", type: 'ux', level: 7},
+    {skillName: "UI Design", type: 'ux', level: 5},
+    {skillName: "Adobe XD", type: 'ux', level: 5},
+    {skillName: "User Tests", type: 'ux', level: 7},
+    {skillName: "React", type: 'web', level: 7},
+    {skillName: "Javascript", type: 'web', level: 7},
+    {skillName: "Typescript", type: 'web', level: 7},
+    {skillName: "CSS", type: 'web', level: 6},
+    {skillName: "Material-UI", type: 'web', level: 8}
   ]
 };
 

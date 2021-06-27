@@ -3,13 +3,17 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { useEffectUnsafe } from '../unsafeHooks';
 import styled from "styled-components";
+import {getSkillsBallsImage} from "./utils/getSkillBallsImage";
+import {getWorldWalls} from "./utils/getWorldWalls";
+import {getCircleBody} from "./utils/getCircleBody";
 
 interface SkillsMapProps {
   skills: SkillsType[];
 }
 
-interface SkillsType {
+export interface SkillsType {
   skillName: string;
+  type: 'web' | 'ux'
   level: number;
 }
 
@@ -43,7 +47,7 @@ export default function SkillsMap({ skills }: SkillsMapProps) {
 
     World.add(
       engine.world,
-      getWorldWalls(boxRef.current.getBoundingClientRect())
+      getWorldWalls(boxRef.current.getBoundingClientRect(), WALLS_THICKNESS)
     );
 
     const mouse = Mouse.create(render.canvas),
@@ -75,7 +79,6 @@ export default function SkillsMap({ skills }: SkillsMapProps) {
   useEffectUnsafe(() => {
     if (constraints) {
       const { width, height } = constraints;
-
       render.bounds.max.x = width;
       render.bounds.max.y = height;
       render.options.width = width;
@@ -130,58 +133,36 @@ export default function SkillsMap({ skills }: SkillsMapProps) {
         { x: WALLS_THICKNESS, y: height },
         { x: 0, y: height },
       ]);
-
     }
-  }, [render, constraints]);
-  useEffectUnsafe(() => {
-    const CIRCLES_SIZE = 10;
+
+  }, [constraints]);
+  useEffect(() => {
     const timeouts: Array<NodeJS.Timeout> = [];
     if (render && skills) {
       skills.forEach(skill => {
-        const { width } = constraints;
-        const randomX = Math.floor(Math.random() * -width) + width;
         timeouts.push(
           setTimeout(() => {
             Matter.World.add(
               render.engine.world,
-              Matter.Bodies.circle(
-                randomX,
-                skill.level * CIRCLES_SIZE,
-                skill.level * CIRCLES_SIZE,
-                {
-                  restitution: BOUNCINESS,
-                  render: {
-                    sprite: {
-                      texture: createImage(
-                        skill.skillName,
-                        skill.level * CIRCLES_SIZE
-                      ),
-                      xScale: 1,
-                      yScale: 1,
-                    },
-                  },
-                }
-              )
+              getCircleBody(constraints,skill),
             );
-          }, Math.random() * (200 - 0))
+          }, Math.random() * (500 - 50))
         );
       });
     }
-
-
     return () => {
       if (timeouts) {
         timeouts.forEach(t => clearTimeout(t));
       }
     };
-  }, [skills, render]);
+  }, [skills, render, constraints]);
 
   return (
 
       <CanvasWrapper
         ref={boxRef}
         style={{
-          width: '100%',
+          width: '600px',
           height: '100%',
         }}
       >
@@ -191,73 +172,7 @@ export default function SkillsMap({ skills }: SkillsMapProps) {
   );
 }
 
-function getWorldWalls(constraints: any) {
-  const { width, height } = constraints;
 
-  const options = {
-    isStatic: true,
-    render: {
-      fillStyle: 'blue',
-    },
-  };
-
-  const topWall = Matter.Bodies.rectangle(
-    width / 2,
-    -WALLS_THICKNESS / 2,
-    width,
-    WALLS_THICKNESS,
-    options
-  );
-  const rightWall = Matter.Bodies.rectangle(
-      width + WALLS_THICKNESS / 2,
-      height / 2,
-      WALLS_THICKNESS,
-      height,
-      options
-  );
-  const bottomWall = Matter.Bodies.rectangle(
-      width / 2,
-      height + WALLS_THICKNESS / 2,
-      width,
-      WALLS_THICKNESS,
-      options
-  );
-  const leftWall = Matter.Bodies.rectangle(
-      -WALLS_THICKNESS / 2,
-      height / 2,
-      WALLS_THICKNESS,
-      height,
-      options
-  );
-  return [
-    topWall,
-    rightWall,
-    bottomWall,
-    leftWall,
-  ];
-}
-
-function createImage($string: string, size: number) {
-  const drawing = document.createElement('canvas');
-  drawing.width = size * 2;
-  drawing.height = size * 2;
-  const ctx = drawing.getContext('2d');
-
-  if (ctx) {
-    ctx.beginPath();
-    ctx.arc(size, size, size, 0, Math.PI * 2);
-    ctx.fillStyle = 'blue';
-    ctx.fill();
-    ctx.closePath();
-
-    ctx.fillStyle = '#fff';
-    ctx.font = '12pt Yantramanav';
-    ctx.textAlign = 'center';
-    ctx.fillText($string, size, size + 4);
-  }
-
-  return drawing.toDataURL('image/png', 10);
-}
 
 const CanvasWrapper = styled.div`
   width: 100%;
