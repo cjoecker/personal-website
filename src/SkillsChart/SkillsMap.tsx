@@ -1,180 +1,59 @@
-import Matter, {Composite, Mouse, MouseConstraint} from 'matter-js';
-import React, { useEffect, useRef, useState } from 'react';
+import { Paper, Typography, useTheme } from "@mui/material";
+import React from 'react';
+import styled from 'styled-components';
 
-import { useEffectUnsafe } from '../unsafeHooks';
-import styled from "styled-components";
-import {getSkillsBallsImage} from "./utils/getSkillBallsImage";
-import {getWorldWalls} from "./utils/getWorldWalls";
-import {getCircleBody} from "./utils/getCircleBody";
+import Balls, { SkillsType } from './components/Balls';
+
+
 
 interface SkillsMapProps {
   skills: SkillsType[];
 }
 
-export interface SkillsType {
-  skillName: string;
-  type: 'web' | 'ux'
-  level: number;
-}
+export function SkillsMap({ skills }: SkillsMapProps) {
 
-const BOUNCINESS = 0.7;
-const WALLS_THICKNESS = 10;
-
-export default function SkillsMap({ skills }: SkillsMapProps) {
-  const boxRef = useRef<any>(null);
-  const canvasRef = useRef<any>(null);
-  const [constraints, setConstraints] = useState<any>();
-  const [render, setScene] = useState<any>();
-  const handleResize = () => {
-    setConstraints(boxRef.current.getBoundingClientRect());
-  };
-
-  useEffectUnsafe(() => {
-    const Engine = Matter.Engine;
-    const Render = Matter.Render;
-    const Runner = Matter.Runner;
-    const World = Matter.World;
-    const engine = Engine.create({});
-    const render = Render.create({
-      element: boxRef.current,
-      engine: engine,
-      canvas: canvasRef.current,
-      options: {
-        background: 'transparent',
-        wireframes: false,
-      },
-    });
-
-    World.add(
-      engine.world,
-      getWorldWalls(boxRef.current.getBoundingClientRect(), WALLS_THICKNESS)
-    );
-
-    const mouse = Mouse.create(render.canvas),
-        mouseConstraint = MouseConstraint.create(engine, {
-          mouse: mouse,
-          constraint: {
-            stiffness: 0.1,
-            render: {
-              visible: false
-            }
-          }
-        });
-
-    World.add(engine.world, mouseConstraint);
-
-    Runner.run(engine);
-    Render.run(render);
-    setConstraints(boxRef.current.getBoundingClientRect());
-    setScene(render);
-    window.addEventListener('resize', handleResize);
-  }, []);
-  useEffect(() => {
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-
-  useEffectUnsafe(() => {
-    if (constraints) {
-      const { width, height } = constraints;
-      render.bounds.max.x = width;
-      render.bounds.max.y = height;
-      render.options.width = width;
-      render.options.height = height;
-      render.canvas.width = width;
-      render.canvas.height = height;
-
-      const topWall = render.engine.world.bodies[0];
-      Matter.Body.setPosition(topWall, {
-        x: width / 2,
-        y: -WALLS_THICKNESS / 2,
-      });
-      Matter.Body.setVertices(topWall, [
-        { x: 0, y: 0 },
-        { x: width, y: 0 },
-        { x: width, y: WALLS_THICKNESS },
-        { x: 0, y: WALLS_THICKNESS },
-      ]);
-
-      const rightWall = render.engine.world.bodies[1];
-      Matter.Body.setPosition(rightWall, {
-        x: width + WALLS_THICKNESS / 2,
-        y: height / 2,
-      });
-      Matter.Body.setVertices(rightWall, [
-        { x: 0, y: 0 },
-        { x: WALLS_THICKNESS, y: 0 },
-        { x: WALLS_THICKNESS, y: height },
-        { x: 0, y: height },
-      ]);
-
-      const bottomWall = render.engine.world.bodies[2];
-      Matter.Body.setPosition(bottomWall, {
-        x: width / 2,
-        y: height + WALLS_THICKNESS / 2,
-      });
-      Matter.Body.setVertices(bottomWall, [
-        { x: 0, y: 0 },
-        { x: width, y: 0 },
-        { x: width, y: WALLS_THICKNESS },
-        { x: 0, y: WALLS_THICKNESS },
-      ]);
-
-      const leftWall = render.engine.world.bodies[3];
-      Matter.Body.setPosition(leftWall, {
-        x: -WALLS_THICKNESS / 2,
-        y: height / 2,
-      });
-      Matter.Body.setVertices(leftWall, [
-        { x: 0, y: 0 },
-        { x: WALLS_THICKNESS, y: 0 },
-        { x: WALLS_THICKNESS, y: height },
-        { x: 0, y: height },
-      ]);
-    }
-
-  }, [constraints]);
-  useEffect(() => {
-    const timeouts: Array<NodeJS.Timeout> = [];
-    if (render && skills) {
-      skills.forEach(skill => {
-        timeouts.push(
-          setTimeout(() => {
-            Matter.World.add(
-              render.engine.world,
-              getCircleBody(constraints,skill),
-            );
-          }, Math.random() * (500 - 50))
-        );
-      });
-    }
-    return () => {
-      if (timeouts) {
-        timeouts.forEach(t => clearTimeout(t));
-      }
-    };
-  }, [skills, render, constraints]);
+    const style = useTheme()
 
   return (
-
-      <CanvasWrapper
-        ref={boxRef}
-        style={{
-          width: '600px',
-          height: '100%',
-        }}
-      >
-        <canvas ref={canvasRef} />
-      </CanvasWrapper>
-
+    <MainWrapper backgroundColor={style.palette.background.default}>
+      <SkillsLegend>
+        <SkillsLegendItem variant={'h2'} color={'secondary'}>Web Development</SkillsLegendItem>
+        <SkillsLegendItem variant={'h2'} color={'primary'}>User Experience (UX)</SkillsLegendItem>
+      </SkillsLegend>
+      <BallsWrapper>
+        <Balls skills={skills} />
+      </BallsWrapper>
+    </MainWrapper>
   );
 }
 
-
-
-const CanvasWrapper = styled.div`
+const MainWrapper = styled.div<{backgroundColor: string}>`
   width: 100%;
   height: 100%;
-`
+  position: relative;
+  background-color: ${p=>p.backgroundColor};
+`;
+const BallsWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Yantramanav,serif;
+`;
+
+const SkillsLegend = styled(Paper)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+`;
+const SkillsLegendItem = styled(Typography)`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;

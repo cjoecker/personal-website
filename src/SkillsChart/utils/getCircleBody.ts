@@ -1,14 +1,14 @@
 import Matter from "matter-js";
 
-import {SkillsType} from "../SkillsMap";
+import {SkillsType} from "../components/Balls";
 
 import {getSkillsBallsImage} from "./getSkillBallsImage";
 
 
-const CIRCLES_SIZE = 10;
+const CIRCLES_SIZE = 7;
 const BOUNCINESS = 0.7;
 
-export function getCircleBody(constraints: unknown, skill: SkillsType){
+export function getCircleBody(constraints: unknown, skill: SkillsType, color: string){
     const { width } = constraints as {width: number, height: number};
     const size = skill.level * CIRCLES_SIZE
     const xPosOffset = skill.type === 'ux' ? width / 2 : 0;
@@ -24,7 +24,8 @@ export function getCircleBody(constraints: unknown, skill: SkillsType){
                 sprite: {
                     texture: getSkillsBallsImage(
                         skill,
-                        size
+                        size,
+                        color
                     ),
                     xScale: 1,
                     yScale: 1,

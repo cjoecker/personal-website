@@ -1,34 +1,33 @@
-import { Paper, Typography } from '@material-ui/core';
-import React, {useEffect} from 'react';
+import { Paper, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
-
-import { fetchWeather } from '../api';
-import { LocationsType } from '../constants/locations';
-import {weatherCodes} from "../constants/weatherCodes";
-
+import { fetchWeather } from '../../api';
+import { LocationsType } from '../../constants/locations';
 import LocationTemperature from './LocationTemperature';
-import {getWeatherImagePath} from "./utils/locationUtils";
+import { getWeatherImagePath } from '../utils/locationUtils';
+import { weatherCodes } from '../../constants/weatherCodes';
 
 interface LocationSliderProps {
   location: LocationsType;
 }
 
 export default function LocationDashboard({ location }: LocationSliderProps) {
-  const {
-    data,
-    isLoading,
-    error,
-  } = useQuery(['weather',location.city], () => fetchWeather(location));
+  const { data, isLoading } = useQuery(['weather', location.city], () =>
+    fetchWeather(location)
+  );
 
-  const weatherCode = data ? data.current.condition.code : undefined
+  const [imgUrl, setImgUrl] = useState('');
+  const weatherCode = data?.current?.condition?.code;
+  const images = require.context('../images', false);
 
   useEffect(() => {
-    if(error){
-      console.error(error)
+    if (images && weatherCode) {
+      setImgUrl(
+        images(`./${getWeatherImagePath(weatherCode, data.current.is_day)}`).default
+      );
     }
-  }, [error]);
-
+  }, [data, weatherCode,images]);
 
   return (
     <Paper>
@@ -48,10 +47,7 @@ export default function LocationDashboard({ location }: LocationSliderProps) {
         {!isLoading && data && (
           <WeatherWrapper>
             <WeatherImageContainer>
-            <img
-              alt={weatherCodes.get(weatherCode)}
-              src={require(`${getWeatherImagePath(weatherCode,data.current.is_day)}`).default}
-            />
+              <img alt={weatherCodes.get(weatherCode)} src={imgUrl} />
             </WeatherImageContainer>
           </WeatherWrapper>
         )}
@@ -59,8 +55,6 @@ export default function LocationDashboard({ location }: LocationSliderProps) {
     </Paper>
   );
 }
-
-
 
 const FlexBox = styled.div`
   display: flex;
@@ -80,7 +74,6 @@ const TemperatureWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
-
 
 const WeatherWrapper = styled.div`
   flex: 0 0 65px;

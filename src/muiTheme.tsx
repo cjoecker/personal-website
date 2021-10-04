@@ -1,13 +1,13 @@
 import {
-  createMuiTheme,
-  ThemeOptions as MuiThemeOptions,
-} from '@material-ui/core/styles';
+  createTheme,
+  ThemeOptions as MuiThemeOptions
+} from "@mui/material";
 import 'typeface-yantramanav'
 
 const background = '#0d1321';
 const primary = '#60AFE0';
 const primaryContrastText = '#000000';
-const secondary = '#cdcdcd';
+const secondary = '#E29578';
 const secondaryContrastText = '#000000';
 const primaryText = '#FAFBFD';
 const secondaryText = '#FAFBFD';
@@ -57,7 +57,7 @@ const muiThemeOptions: MuiThemeOptions = {
     },
   },
   palette: {
-    type: 'dark',
+    mode: 'dark',
     background: {
       default: background,
       paper: paperBackground,
@@ -76,31 +76,18 @@ const muiThemeOptions: MuiThemeOptions = {
       disabled: disabledText,
     },
   },
-  overrides:{
-    MuiPaper: {
-      root: {
-        backdropFilter: "blur(8px) brightness(70%)",
-        backgroundColor: undefined
-      },
-      // elevation1: {
-      //   background: shadeHexColor(background, darkMode ? 0.05 : 0.2),
-      //   boxShadow: `3px 3px 6px rgba(0, 0, 0, 0.2), -2px -2px 4px rgba(255, 255, 255, ${darkMode ? 0.05 : 0.3})`,
-      //   borderRadius: '10px',
-      // },
-      // elevation7: {
-      //   boxShadow: `10px 10px 35px 6px rgba(0,0,0,${darkMode ? 0.5 : 0.2})`,
-      // },
-    },
-    MuiSlider:{
-      valueLabel:{
-        label:{
-          color: "red"
-        }
+  components: {
+    MuiPaper:{
+      styleOverrides:{
+        root: {
+          backdropFilter: "blur(8px) brightness(70%)",
+          backgroundColor: undefined,
+        },
       }
-    }
+    },
   }
 };
 
-const muiTheme = createMuiTheme(muiThemeOptions);
+const muiTheme = createTheme(muiThemeOptions);
 
 export default muiTheme;

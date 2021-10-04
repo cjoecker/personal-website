@@ -1,7 +1,7 @@
 import { getYear } from 'date-fns';
 
 import { LocationsType } from '../../constants/locations';
-import {weatherCodes} from "../../constants/weatherCodes";
+import { weatherCodes } from '../../constants/weatherCodes';
 
 interface LocationMarkType {
   value: number;
@@ -10,9 +10,7 @@ interface LocationMarkType {
 
 export const THIS_YEAR = getYear(new Date());
 
-export function locationUtils(
-  locations: LocationsType[]
-): LocationMarkType[] {
+export function locationUtils(locations: LocationsType[]): LocationMarkType[] {
   const sortedLocations = sortLocationsByYear(locations);
   const locationsWithActualYear = addActualYearToLocations(sortedLocations);
 
@@ -78,12 +76,23 @@ export function addActualYearToLocations(
   }
 }
 
-export function getLastLocation(year:number, locations: LocationsType[]):LocationsType{
+export function getLastLocation(
+  year: number,
+  locations: LocationsType[]
+): LocationsType {
   const sortedLocations = sortLocationsByYear(locations).reverse();
-  return sortedLocations.find(location=>location.year<=year) ?? locations[0]
+  return (
+    sortedLocations.find(location => location.year <= year) ?? locations[0]
+  );
 }
 
-export function getWeatherImagePath(weatherCode: number, isDay: boolean):string{
-  const dayOrNight = isDay ? "Day" : "Night";
-  return `./images/${weatherCodes.get(weatherCode)}${dayOrNight}.svg`
+export function getWeatherImagePath(
+  weatherCode: number | undefined,
+  isDay: boolean
+): string {
+  if (!weatherCode) {
+    return `${weatherCodes.get(1000)}Day.svg`;
+  }
+  const dayOrNight = isDay ? 'Day' : 'Night';
+  return `${weatherCodes.get(weatherCode)}${dayOrNight}.svg`;
 }

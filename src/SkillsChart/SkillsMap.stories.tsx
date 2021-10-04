@@ -2,7 +2,7 @@ import { Story } from '@storybook/react';
 import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 
-import SkillsMap from "./SkillsMap";
+import {SkillsMap} from "./SkillsMap";
 
 export default {
   title: 'Skills Map',
@@ -10,9 +10,9 @@ export default {
 };
 const Template: Story<ComponentProps<typeof SkillsMap
     >> = (args) => (
-  <MaxWidthWrapper>
+  <DimensionsWrapper>
     <SkillsMap {...args}/>
-  </MaxWidthWrapper>
+  </DimensionsWrapper>
 );
 
 export const Default = Template.bind({});
@@ -30,6 +30,8 @@ Default.args = {
   ]
 };
 
-const MaxWidthWrapper = styled.div`
-  max-width: 300px;
+const DimensionsWrapper = styled.div`
+  width: 500px;
+  height: 400px;
+  position: relative;
 `;

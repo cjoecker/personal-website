@@ -9,8 +9,8 @@ import styled from 'styled-components';
 import { Locations } from '../constants/locations';
 import {useEffectUnsafe} from "../unsafeHooks";
 
-import LocationDashboard from "./LocationDashboard";
-import LocationSlider from './LocationSlider';
+import LocationDashboard from "./components/LocationDashboard";
+import LocationSlider from './components/LocationSlider';
 import {getLastLocation, locationUtils} from './utils/locationUtils';
 
 

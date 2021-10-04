@@ -1,11 +1,10 @@
-import { Mark, Paper, Slider, Typography } from '@material-ui/core';
+import { Mark, Paper, Slider, Typography, useTheme } from "@mui/material";
 import { getYear } from 'date-fns';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 
-import { useEffectUnsafe } from '../unsafeHooks';
-
-import { THIS_YEAR } from './utils/locationUtils';
+import { useEffectUnsafe } from '../../unsafeHooks';
+import { THIS_YEAR } from '../utils/locationUtils';
 
 function valuetext(value: number) {
   return `Year ${value}`;
@@ -25,6 +24,7 @@ export default function LocationSlider({
   const handleChange = (event: any, newValue: number | number[]) => {
     setYear(newValue);
   };
+
 
   useEffectUnsafe(() => {
     const debounceTimer = setTimeout(() => {

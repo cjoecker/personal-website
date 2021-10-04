@@ -2,7 +2,8 @@ import React from 'react';
 
 import logo from './logo.svg';
 import './App.css';
-import SkillsMap from "./SkillsChart/SkillsMap";
+import Balls from "./SkillsChart/components/Balls";
+import LocationMap from "./Map/LocationMap";
 
 function App() {
   return (
@@ -20,11 +21,12 @@ function App() {
         >
           Learn React
         </a>
-        <SkillsMap skills={[
-          {skillName: "UX Design", level: 7},
-          {skillName: "UI Design", level: 6},
-          {skillName: "Adobe XD", level: 5},
-          {skillName: "User Tests", level: 7}
+        <LocationMap/>
+        <Balls skills={[
+          {skillName: "UX Design", level: 7, type: 'ux'},
+          {skillName: "UI Design", level: 6, type: 'ux'},
+          {skillName: "Adobe XD", level: 5, type: 'ux'},
+          {skillName: "User Tests", level: 7, type: 'ux'}
         ]}/>
       </header>
     </div>
