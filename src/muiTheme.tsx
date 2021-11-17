@@ -81,7 +81,7 @@ const muiThemeOptions: MuiThemeOptions = {
       styleOverrides:{
         root: {
           backdropFilter: "blur(8px) brightness(70%)",
-          backgroundColor: undefined,
+          backgroundColor: "transparent",
         },
       }
     },

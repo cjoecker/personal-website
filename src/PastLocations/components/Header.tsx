@@ -15,7 +15,7 @@ interface LocationSliderProps {
   onChangeYear: (year: number) => void;
 }
 
-export default function LocationSlider({
+export default function Header({
   marks,
   onChangeYear,
 }: LocationSliderProps) {
@@ -67,7 +67,6 @@ const TitleWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0px 0 0px;
 `;
 
 const StyledTypography = styled(Typography)`
@@ -75,5 +74,5 @@ const StyledTypography = styled(Typography)`
 `;
 
 const SliderWrapper = styled.div`
-  padding: 0px 20px 5px;
+  padding: 0 20px 5px;
 `;

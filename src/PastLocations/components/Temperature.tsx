@@ -7,12 +7,10 @@ interface LocationSliderProps {
   isLoading: boolean;
 }
 
-export default function LocationTemperature({ temperature, isLoading }: LocationSliderProps) {
-
+export default function Temperature({ temperature, isLoading }: LocationSliderProps) {
     if(isLoading || !temperature){
         return (<CircularProgress />)
     }
-
     return (
     <TemperatureWrapper>
       <NumberTypography variant="body1">

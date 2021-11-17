@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { fetchWeather } from '../../api';
 import { LocationsType } from '../../constants/locations';
-import LocationTemperature from './LocationTemperature';
+import Temperature from './Temperature';
 import { getWeatherImagePath } from '../utils/locationUtils';
 import { weatherCodes } from '../../constants/weatherCodes';
 
@@ -12,7 +12,7 @@ interface LocationSliderProps {
   location: LocationsType;
 }
 
-export default function LocationDashboard({ location }: LocationSliderProps) {
+export default function Footer({ location }: LocationSliderProps) {
   const { data, isLoading } = useQuery(['weather', location.city], () =>
     fetchWeather(location)
   );
@@ -39,7 +39,7 @@ export default function LocationDashboard({ location }: LocationSliderProps) {
           </LocationTypography>
         </LocationWrapper>
         <TemperatureWrapper>
-          <LocationTemperature
+          <Temperature
             temperature={data ? data.current.temp_c : null}
             isLoading={isLoading}
           />

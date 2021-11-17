@@ -2,16 +2,16 @@ import { Story } from '@storybook/react';
 import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 
-import LocationDashboard from "./LocationDashboard";
+import Footer from "./Footer";
 
 export default {
-  title: 'Location Dashboard',
-  component: LocationDashboard,
+  title: 'PastLocations/Footer',
+  component: Footer,
 };
-const Template: Story<ComponentProps<typeof LocationDashboard
+const Template: Story<ComponentProps<typeof Footer
     >> = args => (
   <MaxWidthWrapper>
-    <LocationDashboard {...args} />
+    <Footer {...args} />
   </MaxWidthWrapper>
 );
 

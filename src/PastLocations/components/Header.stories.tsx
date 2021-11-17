@@ -2,15 +2,15 @@ import { Story } from '@storybook/react';
 import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 
-import LocationSlider from './LocationSlider';
+import Header from './Header';
 
 export default {
-  title: 'Location Slider',
-  component: LocationSlider,
+  title: 'PastLocations/Header',
+  component: Header,
 };
-const Template: Story<ComponentProps<typeof LocationSlider>> = args => (
+const Template: Story<ComponentProps<typeof Header>> = args => (
   <MaxWidthWrapper>
-    <LocationSlider {...args} />
+    <Header {...args} />
   </MaxWidthWrapper>
 );
 
