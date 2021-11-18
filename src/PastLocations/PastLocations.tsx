@@ -101,5 +101,5 @@ const StyledDiv = styled.div<{ position: 'top' | 'bottom' }>`
   z-index: 5;
 `;
 const Margins = styled.div`
-  margin: 5px;
+  margin: var(--margin-s);
 `;

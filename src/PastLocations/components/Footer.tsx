@@ -2,17 +2,20 @@ import { Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
+
 import { fetchWeather } from '../../api';
 import { LocationsType } from '../../constants/locations';
-import Temperature from './Temperature';
-import { getWeatherImagePath } from '../utils/locationUtils';
 import { weatherCodes } from '../../constants/weatherCodes';
+import { getWeatherImagePath } from '../utils/locationUtils';
 
-interface LocationSliderProps {
+import Temperature from './Temperature';
+
+
+interface FooterProps {
   location: LocationsType;
 }
 
-export default function Footer({ location }: LocationSliderProps) {
+export default function Footer({ location }: FooterProps) {
   const { data, isLoading } = useQuery(['weather', location.city], () =>
     fetchWeather(location)
   );
@@ -63,7 +66,7 @@ const FlexBox = styled.div`
 `;
 const LocationWrapper = styled.div`
   flex: 1 1 100%;
-  margin: 10px 0 5px 10px;
+  margin: var(--margin-m) 0 var(--margin-s) var(--margin-m);
 `;
 
 const LocationTypography = styled(Typography)``;
@@ -83,5 +86,5 @@ const WeatherWrapper = styled.div`
 `;
 
 const WeatherImageContainer = styled.div`
-  margin: 10px 10px 10px 10px;
+  margin: var(--margin-m);
 `;

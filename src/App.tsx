@@ -2,12 +2,13 @@ import React from 'react';
 
 import logo from './logo.svg';
 import './App.css';
-import Balls from "./SkillsChart/components/Balls";
-import LocationMap from "./Map/LocationMap";
+
+import styled from "styled-components";
+import Balls from "./Skills/components/Balls";
 
 function App() {
   return (
-    <div className="App">
+    <CSSVariables className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -21,16 +22,15 @@ function App() {
         >
           Learn React
         </a>
-        <LocationMap/>
-        <Balls skills={[
-          {skillName: "UX Design", level: 7, type: 'ux'},
-          {skillName: "UI Design", level: 6, type: 'ux'},
-          {skillName: "Adobe XD", level: 5, type: 'ux'},
-          {skillName: "User Tests", level: 7, type: 'ux'}
-        ]}/>
       </header>
-    </div>
+    </CSSVariables>
   );
 }
 
 export default App;
+
+export const CSSVariables = styled.div`
+  --margin-s: 5px;
+  --margin-m: 10px;
+  --margin-l: 20px;
+`;

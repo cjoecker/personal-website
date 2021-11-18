@@ -10,7 +10,7 @@ function valuetext(value: number) {
   return `Year ${value}`;
 }
 
-interface LocationSliderProps {
+interface HeaderProps {
   marks: Mark[];
   onChangeYear: (year: number) => void;
 }
@@ -18,7 +18,7 @@ interface LocationSliderProps {
 export default function Header({
   marks,
   onChangeYear,
-}: LocationSliderProps) {
+}: HeaderProps) {
   const [year, setYear] = useState<number | number[]>(getYear(new Date()) - 5);
 
   const handleChange = (event: any, newValue: number | number[]) => {
@@ -70,9 +70,9 @@ const TitleWrapper = styled.div`
 `;
 
 const StyledTypography = styled(Typography)`
-  padding-top: 15px;
+  padding-top: var(--margin-l);
 `;
 
 const SliderWrapper = styled.div`
-  padding: 0 20px 5px;
+  padding: 0 var(--margin-l) var(--margin-s);
 `;

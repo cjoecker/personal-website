@@ -7,7 +7,7 @@ import { useEffectUnsafe } from '../../unsafeHooks';
 import {getCircleBody} from "../utils/getCircleBody";
 import {getWorldWalls} from "../utils/getWorldWalls";
 
-interface SkillsMapProps {
+interface BallsProps {
   skills: SkillsType[];
 }
 
@@ -19,7 +19,7 @@ export interface SkillsType {
 
 const WALLS_THICKNESS = 10;
 
-export default function Balls({ skills }: SkillsMapProps) {
+export default function Balls({ skills }: BallsProps) {
   const boxRef = useRef<any>(null);
   const canvasRef = useRef<any>(null);
   const [constraints, setConstraints] = useState<any>();
@@ -54,7 +54,6 @@ export default function Balls({ skills }: SkillsMapProps) {
     const mouse = Mouse.create(render.canvas),
         mouseConstraint = MouseConstraint.create(engine, {
           mouse: mouse,
-
         });
 
     World.add(engine.world, mouseConstraint);
@@ -167,8 +166,6 @@ export default function Balls({ skills }: SkillsMapProps) {
 
   );
 }
-
-
 
 const CanvasWrapper = styled.div`
   width: 100%;

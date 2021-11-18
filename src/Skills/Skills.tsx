@@ -6,20 +6,23 @@ import Balls, { SkillsType } from './components/Balls';
 
 
 
-interface SkillsMapProps {
+interface SkillsProps {
   skills: SkillsType[];
 }
 
-export function SkillsMap({ skills }: SkillsMapProps) {
+export function Skills({ skills }: SkillsProps) {
 
     const style = useTheme()
 
   return (
     <MainWrapper backgroundColor={style.palette.background.default}>
-      <SkillsLegend>
-        <SkillsLegendItem variant={'h2'} color={'secondary'}>Web Development</SkillsLegendItem>
-        <SkillsLegendItem variant={'h2'} color={'primary'}>User Experience (UX)</SkillsLegendItem>
-      </SkillsLegend>
+      <Header>
+        <HeaderContainer>
+        <HeaderItem variant={'h2'} color={'secondary'}>Web Development</HeaderItem>
+        <HeaderItem variant={'h2'} isMiddleItem>+</HeaderItem>
+        <HeaderItem variant={'h2'} color={'primary'}>UX and UI Design</HeaderItem>
+        </HeaderContainer>
+      </Header>
       <BallsWrapper>
         <Balls skills={skills} />
       </BallsWrapper>
@@ -42,18 +45,24 @@ const BallsWrapper = styled.div`
   font-family: Yantramanav,serif;
 `;
 
-const SkillsLegend = styled(Paper)`
+const Header = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
+  width: 100%;  
+  z-index: 1;
+  pointer-events: none;
 `;
-const SkillsLegendItem = styled(Typography)`
-  flex: 1;
+const HeaderContainer = styled(Paper)`
+  margin: var(--margin-s);
+  display: flex;
+  height: 50px;
+`;
+const HeaderItem = styled(Typography)<{ isMiddleItem?: boolean }>`
+  flex: ${p => p.isMiddleItem ? 0 : 1};
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  user-select: none;
 `;

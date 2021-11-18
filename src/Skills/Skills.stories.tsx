@@ -2,16 +2,16 @@ import { Story } from '@storybook/react';
 import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 
-import {SkillsMap} from "./SkillsMap";
+import {Skills} from "./Skills";
 
 export default {
-  title: 'Skills Map',
-  component: SkillsMap,
+  title: 'Skills',
+  component: Skills,
 };
-const Template: Story<ComponentProps<typeof SkillsMap
+const Template: Story<ComponentProps<typeof Skills
     >> = (args) => (
   <DimensionsWrapper>
-    <SkillsMap {...args}/>
+    <Skills {...args}/>
   </DimensionsWrapper>
 );
 
