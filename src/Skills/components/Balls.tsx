@@ -51,9 +51,17 @@ export default function Balls({ skills }: BallsProps) {
       getWorldWalls(boxRef.current.getBoundingClientRect(), WALLS_THICKNESS)
     );
 
+
     const mouse = Mouse.create(render.canvas),
         mouseConstraint = MouseConstraint.create(engine, {
           mouse: mouse,
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          constraint: {
+            render: {
+              visible: false
+            }
+          }
         });
 
     World.add(engine.world, mouseConstraint);

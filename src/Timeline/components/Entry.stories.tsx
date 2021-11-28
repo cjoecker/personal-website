@@ -20,8 +20,8 @@ Default.args = {
   entry:{
     startDate: new Date("2019-01-06"),
     endDate: "Today",
+    company: "MaibornWolff",
     position: 'Senior IT Consultant',
-    companyLogoPath: "",
     description: "Lorem ipsum",
     technologies: ["React","C#","WinForms", "WPF"]
   }
