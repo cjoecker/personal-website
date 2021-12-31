@@ -36,21 +36,23 @@ function App() {
 
   useEffectUnsafe(() => {
     const width = window.innerWidth;
+    console.info(titleRef.current?.offsetWidth)
+    console.info(skillsRef.current?.offsetWidth)
     setPositions({
       title: {
         x: width *0.5 - (titleRef.current?.offsetWidth ?? 0) / 2,
         y: 30,
       },
       locations: {
-        x: width * 0.2 - (locationsRef.current?.offsetWidth ?? 0) / 2,
+        x: 30,
         y: 40,
       },
       skills: {
-        x: width * 0.75 - (skillsRef.current?.offsetWidth ?? 0) / 2,
+        x: width  - (skillsRef.current?.offsetWidth ?? 0) - 30,
         y: (titleRef.current?.offsetHeight ?? 0) + 40,
       },
     });
-  }, [titleRef.current]);
+  }, [skillsRef.current,titleRef.current, locationsRef.current]);
 
   return (
     <div className="App">

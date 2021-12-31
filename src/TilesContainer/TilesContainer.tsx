@@ -28,7 +28,7 @@ export const TilesContainer = forwardRef<HTMLDivElement, TilesContainerProps>(
 );
 
 const MainContainer = styled(motion.div)`
-  max-width: 400px;
+  max-width: 500px;
   position: absolute;
 `;
 const ChildrenContainer = styled.div`
