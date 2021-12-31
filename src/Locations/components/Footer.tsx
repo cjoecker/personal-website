@@ -10,7 +10,6 @@ import { getWeatherImagePath } from '../utils/locationUtils';
 
 import Temperature from './Temperature';
 
-
 interface FooterProps {
   location: LocationsType;
 }
@@ -27,7 +26,7 @@ export default function Footer({ location }: FooterProps) {
   useEffect(() => {
     if (images && weatherCode) {
       setImgUrl(
-        images(`./${getWeatherImagePath(weatherCode, data.current.is_day)}`).default
+        images(`./${getWeatherImagePath(weatherCode, data.current.is_day)}`)
       );
     }
   }, [data, weatherCode,images]);
@@ -36,8 +35,8 @@ export default function Footer({ location }: FooterProps) {
     <Paper>
       <FlexBox>
         <LocationWrapper>
-          <LocationTypography variant="h2">{location.city}</LocationTypography>
-          <LocationTypography variant="h3">
+          <LocationTypography variant="h4">{location.city}</LocationTypography>
+          <LocationTypography variant="h5">
             {location.country}
           </LocationTypography>
         </LocationWrapper>

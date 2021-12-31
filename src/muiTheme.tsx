@@ -1,8 +1,5 @@
-import {
-  createTheme,
-  ThemeOptions as MuiThemeOptions
-} from "@mui/material";
-import 'typeface-yantramanav'
+import { createTheme, ThemeOptions as MuiThemeOptions } from '@mui/material';
+import 'typeface-yantramanav';
 
 const background = '#0d1321';
 const primary = '#60AFE0';
@@ -25,19 +22,20 @@ const muiThemeOptions: MuiThemeOptions = {
     fontWeightBold: 300,
     h1: {
       fontWeight: 300,
-      fontSize: 28,
+      fontSize: 38,
     },
     h2: {
       fontWeight: 300,
-      fontSize: 24,
+      fontSize: 22,
+      color: primary
     },
     h3: {
       fontWeight: 300,
-      fontSize: 20,
+      fontSize: 18,
     },
     h4: {
-      fontWeight: 100,
-      fontSize: 18,
+      fontWeight: 300,
+      fontSize: 20,
     },
     h5: {
       fontWeight: 100,
@@ -45,7 +43,7 @@ const muiThemeOptions: MuiThemeOptions = {
     },
     h6: {
       fontWeight: 100,
-      fontSize: 16,
+      fontSize: 12,
     },
     body1: {
       fontWeight: 100,

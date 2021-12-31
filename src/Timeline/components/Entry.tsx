@@ -1,8 +1,8 @@
-import { Paper, Typography, useTheme } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-import { TimelineEntryType } from '../../constants/timelineEntries';
+import { TimelineEntryType } from '../../constants/timeline';
 import { getFormattedDateRange } from '../utils/timelineUtils';
 
 interface EntryProps {
@@ -25,7 +25,6 @@ export function Entry({
   return (
     <MainWrapper
       backgroundColor={style.palette.background.default}
-      color={style.palette.text.primary}
     >
       <InfoWrapper>
         <TitleWrapper>
@@ -48,7 +47,7 @@ export function Entry({
           {isSameCompanyAsBefore && (
             <Logo
               alt={`${company} logo`}
-              src={images(`./${company}.svg`).default}
+              src={images(`./${company}.svg`)}
             />
           )}
         </LogoWrapper>
@@ -66,11 +65,10 @@ export function Entry({
   );
 }
 
-const MainWrapper = styled.div<{ backgroundColor: string; color: string }>`
+const MainWrapper = styled.div<{ backgroundColor: string; }>`
   width: 100%;
   position: relative;
   background-color: ${p => p.backgroundColor};
-  color: ${p => p.color};
   display: flex;
   flex-direction: column;
   height: 100px;

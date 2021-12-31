@@ -5,32 +5,37 @@ import { ViewportProps } from 'react-map-gl/dist/es5/utils/map-state';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import styled from 'styled-components';
 
-import { Locations } from '../constants/locations';
 import { useEffectUnsafe } from '../unsafeHooks';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { getLastLocation, locationUtils } from './utils/locationUtils';
+import { LocationsType } from '../constants/locations';
 
 const queryClient = new QueryClient();
 
+interface locationEntriesProps {
+  locationEntries: LocationsType[];
+}
+
 //TODO move map access token to env
-export default function PastLocations() {
-  const [location, setLocation] = useState(Locations[0]);
+export default function Locations({locationEntries}:locationEntriesProps) {
+  const lastLocation = locationEntries[0]
+  const [location, setLocation] = useState(lastLocation);
 
   const [viewport, setViewport] = useState<ViewportProps>({
-    latitude: Locations[0].latitude,
-    longitude: Locations[0].longitude,
+    latitude: lastLocation.latitude,
+    longitude: lastLocation.longitude,
     zoom: 15,
   });
 
   const [markerPos, setMarkerPos] = useState({
-    latitude: Locations[0].latitude,
-    longitude: Locations[0].longitude,
+    latitude: lastLocation.latitude,
+    longitude: lastLocation.longitude,
   });
 
   const handleYearChange = (year: number) => {
-    setLocation(getLastLocation(year, Locations));
+    setLocation(getLastLocation(year, locationEntries));
   };
 
   useEffectUnsafe(() => {
@@ -73,7 +78,7 @@ export default function PastLocations() {
         <StyledDiv position={'top'}>
           <Margins>
             <Header
-              marks={locationUtils(Locations)}
+              marks={locationUtils(locationEntries)}
               onChangeYear={handleYearChange}
             />
           </Margins>
@@ -89,7 +94,7 @@ export default function PastLocations() {
 }
 
 const LocationBox = styled.div`
-  max-width: 300px;
+  width: 300px;
   height: 500px;
   position: relative;
 `;

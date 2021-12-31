@@ -1,10 +1,9 @@
-import { Paper, Typography, useTheme } from "@mui/material";
+import { Paper, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-import Balls, { SkillsType } from './components/Balls';
-
-
+import Balls from './components/Balls';
+import { SkillsType } from '../constants/skills';
 
 interface SkillsProps {
   skills: SkillsType[];
@@ -18,9 +17,9 @@ export function Skills({ skills }: SkillsProps) {
     <MainWrapper backgroundColor={style.palette.background.default}>
       <Header>
         <HeaderContainer>
-        <HeaderItem variant={'h2'} color={'secondary'}>Web Development</HeaderItem>
-        <HeaderItem variant={'h2'} isMiddleItem>+</HeaderItem>
-        <HeaderItem variant={'h2'} color={'primary'}>UX and UI Design</HeaderItem>
+        <HeaderItem variant={'h4'} color={'secondary'}>Web Development</HeaderItem>
+        <HeaderItem variant={'h4'} isMiddleItem>+</HeaderItem>
+        <HeaderItem variant={'h4'} color={'primary'}>UX and UI Design</HeaderItem>
         </HeaderContainer>
       </Header>
       <BallsWrapper>
@@ -30,11 +29,11 @@ export function Skills({ skills }: SkillsProps) {
   );
 }
 
-const MainWrapper = styled.div<{backgroundColor: string}>`
-  width: 100%;
-  height: 100%;
+const MainWrapper = styled(Paper)<{backgroundColor: string}>`
+  width: 500px;
+  height: 400px;
   position: relative;
-  background-color: ${p=>p.backgroundColor};
+ 
 `;
 const BallsWrapper = styled.div`
   position: absolute;
@@ -53,7 +52,7 @@ const Header = styled.div`
   z-index: 1;
   pointer-events: none;
 `;
-const HeaderContainer = styled(Paper)`
+const HeaderContainer = styled.div`
   margin: var(--margin-s);
   display: flex;
   height: 50px;

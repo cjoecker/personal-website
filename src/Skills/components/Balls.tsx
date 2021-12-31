@@ -1,20 +1,15 @@
-import {useTheme} from "@mui/material";
-import Matter, { Mouse, MouseConstraint} from 'matter-js';
+import { useTheme } from '@mui/material';
+import Matter, { Mouse, MouseConstraint } from 'matter-js';
 import React, { useEffect, useRef, useState } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 import { useEffectUnsafe } from '../../unsafeHooks';
-import {getCircleBody} from "../utils/getCircleBody";
-import {getWorldWalls} from "../utils/getWorldWalls";
+import { getCircleBody } from '../utils/getCircleBody';
+import { getWorldWalls } from '../utils/getWorldWalls';
+import { SkillsType } from '../../constants/skills';
 
 interface BallsProps {
   skills: SkillsType[];
-}
-
-export interface SkillsType {
-  skillName: string;
-  type: 'web' | 'ux'
-  level: number;
 }
 
 const WALLS_THICKNESS = 10;

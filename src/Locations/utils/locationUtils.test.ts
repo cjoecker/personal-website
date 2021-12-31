@@ -2,7 +2,9 @@ import { getYear } from 'date-fns';
 
 import {
   abbreviateYear,
-  addActualYearToLocations, getLastLocation, getWeatherImagePath,
+  addActualYearToLocations,
+  getLastLocation,
+  getWeatherImagePath,
   locationUtils,
   sortLocationsByYear,
 } from './locationUtils';
@@ -141,7 +143,7 @@ describe('getLastLocation', () => {
 
 describe('getWeatherImagePath', () => {
   it('should return right weather image', () => {
-    expect(getWeatherImagePath(1000,true)).toEqual("./images/clearDay.svg");
-    expect(getWeatherImagePath(1003,false)).toEqual("./images/partlyCloudyNight.svg");
+    expect(getWeatherImagePath(1000,true)).toEqual("clearDay.svg");
+    expect(getWeatherImagePath(1003,false)).toEqual("partlyCloudyNight.svg");
   });
 });

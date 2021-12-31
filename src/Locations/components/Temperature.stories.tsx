@@ -1,10 +1,10 @@
 import { Story } from '@storybook/react';
 import React, { ComponentProps } from 'react';
 
-import Temperature from "./Temperature";
+import Temperature from './Temperature';
 
 export default {
-  title: 'PastLocations/Temperature',
+  title: 'Locations/Temperature',
   component: Temperature,
 };
 const Template: Story<ComponentProps<typeof Temperature

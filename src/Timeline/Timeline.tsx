@@ -2,7 +2,7 @@ import { useTheme } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-import { TimelineEntryType } from '../constants/timelineEntries';
+import { TimelineEntryType } from '../constants/timeline';
 import { Entry } from './components/Entry';
 import stringHash from 'string-hash';
 

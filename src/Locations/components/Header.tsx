@@ -1,6 +1,6 @@
-import { Mark, Paper, Slider, Typography, useTheme } from "@mui/material";
+import { Mark, Paper, Slider, Typography } from '@mui/material';
 import { getYear } from 'date-fns';
-import React, { useEffect, useState } from "react";
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { useEffectUnsafe } from '../../unsafeHooks';
@@ -41,7 +41,7 @@ export default function Header({
   return (
     <Paper>
       <TitleWrapper>
-        <StyledTypography variant="h3">Year</StyledTypography>
+        <StyledTypography variant="h4">Year</StyledTypography>
       </TitleWrapper>
       <SliderWrapper>
         <Slider

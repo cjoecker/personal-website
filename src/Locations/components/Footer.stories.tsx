@@ -2,10 +2,10 @@ import { Story } from '@storybook/react';
 import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 
-import Footer from "./Footer";
+import Footer from './Footer';
 
 export default {
-  title: 'PastLocations/Footer',
+  title: 'Locations/Footer',
   component: Footer,
 };
 const Template: Story<ComponentProps<typeof Footer

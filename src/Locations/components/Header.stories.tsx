@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Header from './Header';
 
 export default {
-  title: 'PastLocations/Header',
+  title: 'Locations/Header',
   component: Header,
 };
 const Template: Story<ComponentProps<typeof Header>> = args => (
