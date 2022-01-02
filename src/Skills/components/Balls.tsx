@@ -138,7 +138,7 @@ export default function Balls({ skills }: BallsProps) {
     const timeouts: Array<NodeJS.Timeout> = [];
     if (render && skills) {
       skills.forEach(skill => {
-        const color = skill.type === 'ux' ? style.palette.primary.main : style.palette.secondary.main
+        const color = skill.type === 'web' ? style.palette.primary.main : style.palette.secondary.main
         timeouts.push(
           setTimeout(() => {
             Matter.World.add(

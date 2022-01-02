@@ -61,7 +61,6 @@ function App() {
       {/*</Video>*/}
       <ThemeProvider theme={muiTheme}>
         <GlobalStyle color={muiTheme.palette.text.primary} />
-
         <TilesContainer position={positions?.title} ref={titleRef}>
           <Title />
         </TilesContainer>

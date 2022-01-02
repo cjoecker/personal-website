@@ -17,9 +17,9 @@ export function Skills({ skills }: SkillsProps) {
     <MainWrapper backgroundColor={style.palette.background.default}>
       <Header>
         <HeaderContainer>
-        <HeaderItem variant={'h4'} color={'secondary'}>Web Development</HeaderItem>
+        <HeaderItem variant={'h4'} color={'primary'}>Frontend</HeaderItem>
         <HeaderItem variant={'h4'} isMiddleItem>+</HeaderItem>
-        <HeaderItem variant={'h4'} color={'primary'}>UX and UI Design</HeaderItem>
+        <HeaderItem variant={'h4'} color={'secondary'}>UX/UI Design</HeaderItem>
         </HeaderContainer>
       </Header>
       <BallsWrapper>

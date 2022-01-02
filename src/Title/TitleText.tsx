@@ -5,11 +5,11 @@ import styled from 'styled-components';
 
 export type TitleProps = {
   text: string;
-  type: 'Title' | 'Subtitle';
+  type: 'title' | 'subtitle';
 };
 export const TitleText = ({ text, type }: TitleProps) => {
   return (
-    <Typography variant={type === 'Title' ? 'h1' : 'h2'}>
+    <Typography variant={type === 'title' ? 'h1' : 'h2'} color={type === 'title' ? undefined : 'primary'}>
       {text.split('').map((letter, index) => (
         <LetterSpan
           key={index}

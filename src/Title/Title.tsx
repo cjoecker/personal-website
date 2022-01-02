@@ -6,16 +6,13 @@ import styled from 'styled-components';
 export type TitleProps = {};
 export const Title = ({}: TitleProps) => {
   return (
-    <Paper>
-      <TitleText type={'Title'} text='Christian Jöcker'/>
-      <SubtitleWrapper>
-      <TitleText type={'Subtitle'} text='Frontend Developer and UX/UI Designer'/>
-      </SubtitleWrapper>
-    </Paper>
+    <TextContainer>
+      <TitleText type={'title'} text='Christian Jöcker'/>
+      <TitleText type={'subtitle'} text='Frontend Developer and UX/UI Designer'/>
+    </TextContainer>
   );
 };
 
-const SubtitleWrapper = styled.div`
-  padding: 0 var(--margin-m) var(--margin-s) var(--margin-m);
-  color: red;
+const TextContainer = styled(Paper)`
+padding: var(--margin-m);
 `

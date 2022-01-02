@@ -2,7 +2,7 @@ import * as React from 'react';
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, useDragControls } from 'framer-motion';
 import { postion } from '../App';
 
 export type TilesContainerProps = {
@@ -13,14 +13,20 @@ export type TilesContainerProps = {
 
 export const TilesContainer = forwardRef<HTMLDivElement, TilesContainerProps>(
   ({ children, tileName, position }: TilesContainerProps, ref) => {
+    const dragControls = useDragControls()
+    const onStartDrag = (event: any)=>{
+      dragControls.start(event, { snapToCursor: false })
+    }
     return (
       <MainContainer
         style={{ x: position?.x, y: position?.y }}
         ref={ref}
         drag
         dragMomentum={false}
+        dragListener={!tileName}
+        dragControls={dragControls}
       >
-        {tileName && <TileName variant="h3">{tileName}</TileName>}
+        {tileName && <TileName variant="h3" onPointerDown={onStartDrag}>{tileName}</TileName>}
         <ChildrenContainer>{children}</ChildrenContainer>
       </MainContainer>
     );
@@ -30,6 +36,7 @@ export const TilesContainer = forwardRef<HTMLDivElement, TilesContainerProps>(
 const MainContainer = styled(motion.div)`
   max-width: 500px;
   position: absolute;
+  user-select: none;
 `;
 const ChildrenContainer = styled.div`
   position: relative; 
@@ -39,4 +46,5 @@ const TileName = styled(Typography)`
   text-align: left;
   cursor: grab;
   position: relative;
+  user-select: none;
 `;

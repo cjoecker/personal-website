@@ -26,8 +26,7 @@ const muiThemeOptions: MuiThemeOptions = {
     },
     h2: {
       fontWeight: 300,
-      fontSize: 22,
-      color: primary
+      fontSize: 22
     },
     h3: {
       fontWeight: 300,
