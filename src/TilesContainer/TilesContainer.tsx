@@ -13,10 +13,10 @@ export type TilesContainerProps = {
 
 export const TilesContainer = forwardRef<HTMLDivElement, TilesContainerProps>(
   ({ children, tileName, position }: TilesContainerProps, ref) => {
-    const dragControls = useDragControls()
-    const onStartDrag = (event: any)=>{
-      dragControls.start(event, { snapToCursor: false })
-    }
+    const dragControls = useDragControls();
+    const onStartDrag = (event: any) => {
+      dragControls.start(event, { snapToCursor: false });
+    };
     return (
       <MainContainer
         style={{ x: position?.x, y: position?.y }}
@@ -26,8 +26,14 @@ export const TilesContainer = forwardRef<HTMLDivElement, TilesContainerProps>(
         dragListener={!tileName}
         dragControls={dragControls}
       >
-        {tileName && <TileName variant="h3" onPointerDown={onStartDrag}>{tileName}</TileName>}
-        <ChildrenContainer>{children}</ChildrenContainer>
+        {tileName && (
+          <TileName variant="h3" onPointerDown={onStartDrag}>
+            {tileName}
+          </TileName>
+        )}
+        <ChildrenContainer isDraggable={!tileName}>
+          {children}
+        </ChildrenContainer>
       </MainContainer>
     );
   }
@@ -38,8 +44,9 @@ const MainContainer = styled(motion.div)`
   position: absolute;
   user-select: none;
 `;
-const ChildrenContainer = styled.div`
-  position: relative; 
+const ChildrenContainer = styled.div<{ isDraggable: boolean }>`
+  position: relative;
+  cursor: ${p => (p.isDraggable ? 'grab' : 'undefined')};
 `;
 const TileName = styled(Typography)`
   display: block;

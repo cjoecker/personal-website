@@ -4,7 +4,7 @@ import 'typeface-yantramanav';
 const background = '#0d1321';
 const primary = '#60AFE0';
 const primaryContrastText = '#000000';
-const secondary = '#E29578';
+const secondary = '#eac779';
 const secondaryContrastText = '#000000';
 const primaryText = '#FAFBFD';
 const secondaryText = '#FAFBFD';

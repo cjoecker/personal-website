@@ -13,6 +13,8 @@ export const TitleText = ({ text, type }: TitleProps) => {
       {text.split('').map((letter, index) => (
         <LetterSpan
           key={index}
+          drag
+          dragMomentum={false}
           whileHover={{
             rotate: index % 2 ? -3 : 3,
             scale: 1.5,
@@ -28,4 +30,5 @@ export const TitleText = ({ text, type }: TitleProps) => {
 
 const LetterSpan = styled(motion.span)`
   display: inline-block;
+  cursor: grab;
 `;
