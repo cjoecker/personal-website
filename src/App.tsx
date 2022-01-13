@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 
 import styled, { createGlobalStyle } from 'styled-components';
 import Locations from './Locations/Locations';
@@ -32,11 +32,11 @@ function App() {
   const titleRef = useRef<HTMLDivElement>(null);
   const locationsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
+  const [viewWidth, viewHeight] = useWindowSize();
 
   useEffectUnsafe(() => {
     const width = window.innerWidth;
-    console.info(titleRef.current?.offsetWidth);
-    console.info(skillsRef.current?.offsetWidth);
+
     setPositions({
       title: {
         x: width * 0.5 - (titleRef.current?.offsetWidth ?? 0) / 2,
@@ -51,7 +51,7 @@ function App() {
         y: (titleRef.current?.offsetHeight ?? 0) + 40,
       },
     });
-  }, [skillsRef.current, titleRef.current, locationsRef.current]);
+  }, [viewWidth, viewHeight]);
 
   return (
     <ThemeProvider theme={muiTheme}>
@@ -85,7 +85,20 @@ function App() {
 
 export default App;
 
-export const GlobalStyle = createGlobalStyle<{ color?: string; }>`
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
+
+export const GlobalStyle = createGlobalStyle<{ color?: string }>`
   html{
     height: 100%;
     background-color: #161616;
@@ -106,9 +119,8 @@ export const GlobalStyle = createGlobalStyle<{ color?: string; }>`
 `;
 
 const DragContainer = styled.div`
-position: fixed;
+  position: fixed;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  
-`
+`;

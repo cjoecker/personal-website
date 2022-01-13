@@ -19,7 +19,7 @@ export const TilesContainer = forwardRef<HTMLDivElement, TilesContainerProps>(
     };
     return (
       <MainContainer
-        style={{ x: position?.x, y: position?.y }}
+        style={{ left: `${position?.x}px`, top: `${position?.y}px` }}
         ref={ref}
         drag
         dragMomentum={false}
