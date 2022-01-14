@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
-import { fetchWeather } from '../../api';
-import { LocationsType } from '../../constants/locations';
-import { weatherCodes } from '../../constants/weatherCodes';
+import { fetchWeather } from '../../../api';
+import { LocationsType } from '../../../constants/locations';
+import { weatherCodes } from '../../../constants/weatherCodes';
 import { getWeatherImagePath } from '../utils/locationUtils';
 
 import Temperature from './Temperature';

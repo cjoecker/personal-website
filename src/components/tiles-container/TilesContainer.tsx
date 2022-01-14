@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
 import { motion, useDragControls } from 'framer-motion';
-import { postion } from '../App';
+import { postion } from '../../App';
 
 export type TilesContainerProps = {
   children: JSX.Element;

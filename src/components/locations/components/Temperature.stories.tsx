@@ -4,7 +4,7 @@ import React, { ComponentProps } from 'react';
 import Temperature from './Temperature';
 
 export default {
-  title: 'Locations/Temperature',
+  title: 'locations/Temperature',
   component: Temperature,
 };
 const Template: Story<ComponentProps<typeof Temperature

@@ -1,17 +1,17 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 
 import styled, { createGlobalStyle } from 'styled-components';
-import Locations from './Locations/Locations';
+import Locations from './components/locations/Locations';
 import { locations } from './constants/locations';
 import muiTheme from './muiTheme';
 import { ThemeProvider } from '@mui/material';
-import { TilesContainer } from './TilesContainer/TilesContainer';
+import { TilesContainer } from './components/tiles-container/TilesContainer';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ocean from './videos/ocean.mp4';
-import { Title } from './Title/Title';
+import { Title } from './components/title/Title';
 import { useEffectUnsafe } from './unsafeHooks';
-import { Skills } from './Skills/Skills';
+import { Skills } from './components/skills/Skills';
 import { skills } from './constants/skills';
 
 export interface postion {
@@ -66,7 +66,7 @@ function App() {
         </TilesContainer>
         <TilesContainer
           position={positions?.locations}
-          tileName={'Past Locations'}
+          tileName={'Past locations'}
           ref={locationsRef}
         >
           <Locations locationEntries={locations} />

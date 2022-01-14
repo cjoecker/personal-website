@@ -1,4 +1,4 @@
-import { SkillsType } from '../../constants/skills';
+import { SkillsType } from '../../../constants/skills';
 
 export function getSkillsBallsImage(
   skill: SkillsType,

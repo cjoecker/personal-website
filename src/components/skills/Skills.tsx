@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Balls from './components/Balls';
-import { SkillsType } from '../constants/skills';
+import { SkillsType } from '../../constants/skills';
 
 interface SkillsProps {
   skills: SkillsType[];

@@ -1,7 +1,7 @@
 import { getYear } from 'date-fns';
 
-import { LocationsType } from '../../constants/locations';
-import { weatherCodes } from '../../constants/weatherCodes';
+import { LocationsType } from '../../../constants/locations';
+import { weatherCodes } from '../../../constants/weatherCodes';
 
 interface LocationMarkType {
   value: number;

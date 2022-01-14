@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Footer from './Footer';
 
 export default {
-  title: 'Locations/Footer',
+  title: 'locations/Footer',
   component: Footer,
 };
 const Template: Story<ComponentProps<typeof Footer
