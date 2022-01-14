@@ -2,7 +2,7 @@ import { Story } from '@storybook/react';
 import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 
-import {Skills} from "./Skills";
+import { Skills } from './Skills';
 
 export default {
   title: 'Skills',

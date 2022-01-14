@@ -14,10 +14,6 @@ const paperBackground = '#2C373E';
 const muiThemeOptions: MuiThemeOptions = {
   typography: {
     fontFamily: ['Yantramanav', 'Calibri', 'arial'].join(','),
-    caption: {
-      fontWeight: 100,
-      fontSize: 14,
-    },
     fontWeightRegular: 100,
     fontWeightBold: 300,
     h1: {
@@ -51,6 +47,10 @@ const muiThemeOptions: MuiThemeOptions = {
     body2: {
       fontWeight: 100,
       fontSize: 16,
+    },
+    caption: {
+      fontWeight: 300,
+      fontSize: 12,
     },
   },
   palette: {

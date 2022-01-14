@@ -13,6 +13,7 @@ import { Title } from './components/title/Title';
 import { useEffectUnsafe } from './unsafeHooks';
 import { Skills } from './components/skills/Skills';
 import { skills } from './constants/skills';
+import { AppsDashboard } from './components/own-apps/AppsDashboard';
 
 export interface postion {
   x: number;
@@ -23,6 +24,7 @@ interface startPositions {
   title: postion;
   locations: postion;
   skills: postion;
+  ownApps: postion;
 }
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
   const titleRef = useRef<HTMLDivElement>(null);
   const locationsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
+  const ownAppsRef = useRef<HTMLDivElement>(null);
   const [viewWidth, viewHeight] = useWindowSize();
 
   useEffectUnsafe(() => {
@@ -49,6 +52,10 @@ function App() {
       skills: {
         x: width - (skillsRef.current?.offsetWidth ?? 0) - 30,
         y: (titleRef.current?.offsetHeight ?? 0) + 40,
+      },
+      ownApps: {
+        x: width/2 - (ownAppsRef.current?.offsetWidth ?? 0),
+        y: (titleRef.current?.offsetHeight ?? 0) + 70,
       },
     });
   }, [viewWidth, viewHeight]);
@@ -77,6 +84,13 @@ function App() {
           ref={skillsRef}
         >
           <Skills skills={skills} />
+        </TilesContainer>
+        <TilesContainer
+          position={positions?.ownApps}
+          tileName={'Own apps'}
+          ref={ownAppsRef}
+        >
+          <AppsDashboard />
         </TilesContainer>
       </DragContainer>
     </ThemeProvider>
