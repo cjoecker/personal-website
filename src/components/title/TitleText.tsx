@@ -1,6 +1,6 @@
+import { Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import * as React from 'react';
-import { Typography } from '@mui/material';
 import styled from 'styled-components';
 
 export type TitleProps = {

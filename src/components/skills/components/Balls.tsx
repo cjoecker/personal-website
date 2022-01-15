@@ -3,10 +3,10 @@ import Matter, { Mouse, MouseConstraint } from 'matter-js';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+import { SkillsType } from '../../../constants/skills';
 import { useEffectUnsafe } from '../../../unsafeHooks';
 import { getCircleBody } from '../utils/getCircleBody';
 import { getWorldWalls } from '../utils/getWorldWalls';
-import { SkillsType } from '../../../constants/skills';
 
 interface BallsProps {
   skills: SkillsType[];

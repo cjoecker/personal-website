@@ -1,7 +1,8 @@
-import * as React from 'react';
 import { Paper } from '@mui/material';
-import { TitleText } from './TitleText';
+import * as React from 'react';
 import styled from 'styled-components';
+
+import { TitleText } from './TitleText';
 
 export type TitleProps = {};
 export const Title = ({}: TitleProps) => {

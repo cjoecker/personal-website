@@ -2,8 +2,9 @@ import { Paper, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-import Balls from './components/Balls';
 import { SkillsType } from '../../constants/skills';
+
+import Balls from './components/Balls';
 
 interface SkillsProps {
   skills: SkillsType[];

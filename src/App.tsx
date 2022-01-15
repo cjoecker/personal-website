@@ -1,19 +1,18 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
-
-import styled, { createGlobalStyle } from 'styled-components';
-import Locations from './components/locations/Locations';
-import { locations } from './constants/locations';
-import muiTheme from './muiTheme';
 import { ThemeProvider } from '@mui/material';
-import { TilesContainer } from './components/tiles-container/TilesContainer';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import ocean from './videos/ocean.mp4';
-import { Title } from './components/title/Title';
-import { useEffectUnsafe } from './unsafeHooks';
+import React, { useRef, useState } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+
+import { AppsMenu } from './components/apps-menu/AppsMenu';
+import { DraggabableContainer } from './components/draggable-container/DraggabableContainer';
+import Locations from './components/locations/Locations';
+import { ZIndexProvider } from './components/main-views/components/ZIndexProvider';
 import { Skills } from './components/skills/Skills';
+import { Title } from './components/title/Title';
+import { locations } from './constants/locations';
 import { skills } from './constants/skills';
-import { AppsDashboard } from './components/own-apps/AppsDashboard';
+import { useWindowSize } from './hooks/useWindowSize';
+import muiTheme from './muiTheme';
+import { useEffectUnsafe } from './unsafeHooks';
 
 export interface postion {
   x: number;
@@ -54,7 +53,7 @@ function App() {
         y: (titleRef.current?.offsetHeight ?? 0) + 40,
       },
       ownApps: {
-        x: width/2 - (ownAppsRef.current?.offsetWidth ?? 0),
+        x: width / 2 - (ownAppsRef.current?.offsetWidth ?? 0),
         y: (titleRef.current?.offsetHeight ?? 0) + 70,
       },
     });
@@ -62,55 +61,40 @@ function App() {
 
   return (
     <ThemeProvider theme={muiTheme}>
-      <DragContainer>
-        {/*<Video className='videoTag' autoPlay loop muted>*/}
-        {/*  <source src={ocean} type='video/mp4' />*/}
-        {/*</Video>*/}
-
-        <GlobalStyle color={muiTheme.palette.text.primary} />
-        <TilesContainer position={positions?.title} ref={titleRef}>
-          <Title />
-        </TilesContainer>
-        <TilesContainer
-          position={positions?.locations}
-          tileName={'Past locations'}
-          ref={locationsRef}
-        >
-          <Locations locationEntries={locations} />
-        </TilesContainer>
-        <TilesContainer
-          position={positions?.skills}
-          tileName={'Skills'}
-          ref={skillsRef}
-        >
-          <Skills skills={skills} />
-        </TilesContainer>
-        <TilesContainer
-          position={positions?.ownApps}
-          tileName={'Own apps'}
-          ref={ownAppsRef}
-        >
-          <AppsDashboard />
-        </TilesContainer>
-      </DragContainer>
+      <ZIndexProvider>
+        <DragContainer>
+          <GlobalStyle color={muiTheme.palette.text.primary} />
+          <DraggabableContainer position={positions?.title} ref={titleRef}>
+            <Title />
+          </DraggabableContainer>
+          <DraggabableContainer
+            position={positions?.locations}
+            tileName={'Past locations'}
+            ref={locationsRef}
+          >
+            <Locations locationEntries={locations} />
+          </DraggabableContainer>
+          <DraggabableContainer
+            position={positions?.skills}
+            tileName={'Skills'}
+            ref={skillsRef}
+          >
+            <Skills skills={skills} />
+          </DraggabableContainer>
+          <DraggabableContainer
+            position={positions?.ownApps}
+            tileName={'Own apps'}
+            ref={ownAppsRef}
+          >
+            <AppsMenu />
+          </DraggabableContainer>
+        </DragContainer>
+      </ZIndexProvider>
     </ThemeProvider>
   );
 }
 
 export default App;
-
-function useWindowSize() {
-  const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-  return size;
-}
 
 export const GlobalStyle = createGlobalStyle<{ color?: string }>`
   html{

@@ -5,12 +5,12 @@ import { ViewportProps } from 'react-map-gl/dist/es5/utils/map-state';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import styled from 'styled-components';
 
+import { LocationsType } from '../../constants/locations';
 import { useEffectUnsafe } from '../../unsafeHooks';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { getLastLocation, locationUtils } from './utils/locationUtils';
-import { LocationsType } from '../../constants/locations';
 
 const queryClient = new QueryClient();
 

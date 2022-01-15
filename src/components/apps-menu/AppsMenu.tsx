@@ -1,26 +1,28 @@
+import { Paper } from '@mui/material';
+import { Reorder } from 'framer-motion';
 import * as React from 'react';
 import { useState } from 'react';
-import { Paper } from '@mui/material';
-import { ownApps } from '../../constants/ownApps';
-import { IconButton } from './components/IconButton';
 import styled from 'styled-components';
-import { Reorder } from 'framer-motion';
+
+import { ownApps } from '../../constants/ownApps';
+
+import { IconButton } from './components/IconButton';
 
 export type AppsDashboardProps = {};
-export const AppsDashboard = ({}: AppsDashboardProps) => {
+export const AppsMenu = ({}: AppsDashboardProps) => {
   const [items, setItems] = useState(() => ownApps.map(app => app.name));
   return (
     <ContainerWrapper >
-      <DashboardContainer axis="x" values={items} onReorder={setItems}>
+      <MenuContainer axis="x" values={items} onReorder={setItems}>
         {items.map(item => (
           <IconButton key={item} item={item} />
         ))}
-      </DashboardContainer>
+      </MenuContainer>
     </ContainerWrapper>
   );
 };
 
-const DashboardContainer = styled(Reorder.Group)`
+const MenuContainer = styled(Reorder.Group)`
   padding: 10px;
   display: flex;
   list-style-type: none;

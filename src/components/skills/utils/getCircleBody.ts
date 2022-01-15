@@ -1,6 +1,8 @@
 import Matter from 'matter-js';
-import { getSkillsBallsImage } from './getSkillBallsImage';
+
 import { SkillsType } from '../../../constants/skills';
+
+import { getSkillsBallsImage } from './getSkillBallsImage';
 
 const CIRCLES_SIZE = 7;
 const BOUNCINESS = 0.7;
