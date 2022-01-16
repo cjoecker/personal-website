@@ -1,8 +1,10 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLayoutEffectUnsafe } from '../unsafeHooks';
 
 export function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
+  const [isMobile, setIsMobile] = useState(false);
+  useLayoutEffectUnsafe(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);
     }
@@ -10,5 +12,16 @@ export function useWindowSize() {
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
-  return size;
+  useEffect(() => {
+    const browserWidth = size[0];
+    const mobileMaxWidth = 500;
+    if (browserWidth <= mobileMaxWidth && !isMobile) {
+      setIsMobile(true);
+    }
+    if (browserWidth > mobileMaxWidth && isMobile) {
+      setIsMobile(false);
+    }
+  }, [isMobile, size]);
+
+  return { browserWidth: size[0], browserHeight: size[1], isMobile };
 }

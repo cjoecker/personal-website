@@ -19,13 +19,10 @@ export default function Header({
   marks,
   onChangeYear,
 }: HeaderProps) {
-  const [year, setYear] = useState<number | number[]>(getYear(new Date()) - 5);
-
+  const [year, setYear] = useState<number | number[]>(getYear(new Date()))
   const handleChange = (event: any, newValue: number | number[]) => {
     setYear(newValue);
   };
-
-
   useEffectUnsafe(() => {
     const debounceTimer = setTimeout(() => {
       if (!Array.isArray(year)) {

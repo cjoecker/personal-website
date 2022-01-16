@@ -29,5 +29,7 @@ const MenuContainer = styled(Reorder.Group)`
   margin: 0;
 `;
 const ContainerWrapper = styled(Paper)`
-  display: inline-block;
+  flex: 1;
+  justify-content: center;
+  display: flex;
 `;

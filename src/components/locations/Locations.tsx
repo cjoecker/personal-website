@@ -11,6 +11,7 @@ import { useEffectUnsafe } from '../../unsafeHooks';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { getLastLocation, locationUtils } from './utils/locationUtils';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,7 @@ interface locationEntriesProps {
 export default function Locations({locationEntries}:locationEntriesProps) {
   const lastLocation = locationEntries[0]
   const [location, setLocation] = useState(lastLocation);
-
+  const {isMobile} = useWindowSize();
   const [viewport, setViewport] = useState<ViewportProps>({
     latitude: lastLocation.latitude,
     longitude: lastLocation.longitude,
@@ -55,7 +56,7 @@ export default function Locations({locationEntries}:locationEntriesProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LocationBox>
+      <LocationBox isMobile={isMobile}>
         <ReactMapGL
           {...viewport}
           width="100%"
@@ -63,6 +64,8 @@ export default function Locations({locationEntries}:locationEntriesProps) {
           mapStyle="mapbox://styles/cjoecker/ckmpee9hy024v17o553pu11hv"
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(viewport: ViewportProps) => setViewport(viewport)}
+          dragPan={!isMobile}
+          touchAction={isMobile?'pan-y' : 'none'}
         >
           <Marker
             latitude={markerPos.latitude}
@@ -93,9 +96,10 @@ export default function Locations({locationEntries}:locationEntriesProps) {
   );
 }
 
-const LocationBox = styled.div`
-  width: 300px;
-  height: 500px;
+const LocationBox = styled.div<{isMobile: boolean}>`
+  flex: 1;
+  width: ${(p) => p.isMobile ? "500px" : "300px"};
+  height: ${(p) => p.isMobile ? "350px" : "500px"};
   position: relative;
 `;
 

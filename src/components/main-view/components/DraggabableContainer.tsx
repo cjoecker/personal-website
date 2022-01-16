@@ -4,8 +4,8 @@ import * as React from 'react';
 import { forwardRef, useContext, useRef } from 'react';
 import styled from 'styled-components';
 
-import { postion } from '../../App';
-import { ZIndexContext } from '../main-views/components/ZIndexProvider';
+import { postion } from '../../../App';
+import { ZIndexContext } from './ZIndexProvider';
 
 export type TilesContainerProps = {
   children: JSX.Element;

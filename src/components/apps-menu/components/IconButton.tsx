@@ -49,7 +49,7 @@ export const IconButton = ({ item }: IconButtonProps) => {
 };
 
 const ButtonWrapper = styled(Reorder.Item)`
-  margin: 10px;
+  margin: 10px 10px 0 10px;
 `;
 
 const Button = styled(ButtonBase)<{ background: string }>`
