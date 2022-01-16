@@ -1,6 +1,7 @@
 {
   "name": "personal-website",
   "version": "0.1.0",
+  "homepage": "https://cjoecker.github.io/personal-website/",
   "private": true,
   "dependencies": {
     "@mui/material": "^5.2.6",
