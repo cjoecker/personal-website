@@ -32,13 +32,15 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
+    "check-types": "tsc --noemit -p tsconfig.json",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "lint": "eslint --max-warnings=0",
     "lint:fix": "yarn lint --fix",
-    "lint:all": "yarn lint \"**/*.+(js|jsx|ts|tsx)\"",
-    "lint:fix:all": "yarn lint:fix \"**/*.+(js|jsx|ts|tsx)\"",
-    "format:all": "yarn format \"**/*.+(js|jsx|html|css|yaml|json|ts|tsx)\"",
-    "format": "prettier --write",
-    "check-types": "tsc --noemit -p tsconfig.json"
+    "lint:all": "yarn lint .",
+    "lint:fix:all": "yarn lint:fix .",
+    "format:all": "yarn format .",
+    "format": "prettier --write"
   },
   "lint-staged": {
     "*.+(json|yml|yaml|css|less|scss|html)": [
@@ -102,6 +104,7 @@
     "eslint-plugin-react": "^7.26.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "gh-pages": "^3.2.3",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.4",
     "pinst": "^2.1.6",
