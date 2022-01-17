@@ -2,7 +2,7 @@ import * as queryString from 'querystring';
 
 import { LocationsType } from './constants/locations';
 
-const WEATHER_URL = 'http://api.weatherapi.com/v1/current.json';
+const WEATHER_URL = 'https://api.weatherapi.com/v1/current.json';
 
 export const fetchWeather = (location:LocationsType) => {
   if(!process.env.REACT_APP_WEATHER_API_KEY){
