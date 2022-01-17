@@ -1,11 +1,10 @@
 import { ThemeProvider } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { useWindowSize } from './hooks/useWindowSize';
 import muiTheme from './muiTheme';
 import { HorizontalView } from './components/main-view/HorizontalView';
 import { MobileView } from './components/main-view/MobileView';
-import { Simulate } from 'react-dom/test-utils';
 
 export interface postion {
   x: number;
@@ -13,9 +12,6 @@ export interface postion {
 }
 
 function App() {
-  useEffect(() => {
-    console.info(process.env.REACT_APP_WEATHER_API_KEY)
-  }, []);
 
   const {isMobile} = useWindowSize();
   return (
