@@ -38,7 +38,9 @@ const ChildrenContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
-const TileName = styled(Typography)``;
+const TileName = styled(Typography)`
+  user-select: none;
+`;
 const TileNameWrapper = styled.div`
   display: flex;
   margin-bottom: 10px;

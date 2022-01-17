@@ -1,19 +1,8 @@
 import * as queryString from 'querystring';
 
-import {LocationsType} from "./constants/locations";
+import { LocationsType } from './constants/locations';
 
 const WEATHER_URL = 'http://api.weatherapi.com/v1/current.json';
-
-export interface WEATHER_RESPONSE {
-  current: {
-    temp_c: number;
-    is_day: number;
-    condition: {
-      text: string;
-      code: number;
-    };
-  };
-}
 
 export const fetchWeather = (location:LocationsType) => {
   const params = queryString.stringify({

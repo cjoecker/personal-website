@@ -5,7 +5,7 @@ import { SkillsType } from '../../../constants/skills';
 import { getSkillsBallsImage } from './getSkillBallsImage';
 
 const CIRCLES_SIZE = 3;
-const BOUNCINESS = 0.7;
+const BOUNCINESS = 0.6;
 
 export function getCircleBody(constraints: unknown, skill: SkillsType, color: string){
     const { width } = constraints as {width: number, height: number};
@@ -23,11 +23,11 @@ export function getCircleBody(constraints: unknown, skill: SkillsType, color: st
                 sprite: {
                     texture: getSkillsBallsImage(
                         skill,
-                        size,
+                        size*4,
                         color
                     ),
-                    xScale: 1,
-                    yScale: 1,
+                    xScale:1/4,
+                    yScale: 1/4,
                 },
             },
         }

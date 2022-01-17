@@ -1,5 +1,7 @@
 import { SkillsType } from '../../../constants/skills';
 
+const FONT_FACTOR = 2;
+
 export function getSkillsBallsImage(
   skill: SkillsType,
   size: number,
@@ -21,12 +23,14 @@ export function getSkillsBallsImage(
 
     ctx.fillStyle = '#000000';
     ctx.textAlign = 'center';
+    ctx.font = ctx.font.replace(/\d+px/, "52px");
+    ctx.imageSmoothingQuality = 'high';
     if (skillNameWords.length === 1) {
-      ctx.fillText(skill.skillName, size, size + 4);
+      ctx.fillText(skill.skillName, size, size + 16);
     }
     if (skillNameWords.length === 2) {
-      ctx.fillText(skillNameWords[0], size, size - 4);
-      ctx.fillText(skillNameWords[1], size, size + 10);
+      ctx.fillText(skillNameWords[0], size, size - 16);
+      ctx.fillText(skillNameWords[1], size, size + 40);
     }
     if (skillNameWords.length > 2) {
       console.error(`${skill.skillName} has more then 2 words`);
