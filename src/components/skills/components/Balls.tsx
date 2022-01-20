@@ -15,6 +15,7 @@ interface BallsProps {
 const WALLS_THICKNESS = 10;
 
 export default function Balls({ skills }: BallsProps) {
+  const ratio = window.devicePixelRatio;
   const boxRef = useRef<any>(null);
   const canvasRef = useRef<any>(null);
   const [constraints, setConstraints] = useState<any>();
@@ -59,6 +60,7 @@ export default function Balls({ skills }: BallsProps) {
           }
         });
 
+    mouse.pixelRatio = ratio
     World.add(engine.world, mouseConstraint);
 
     Runner.run(engine);
@@ -84,7 +86,6 @@ export default function Balls({ skills }: BallsProps) {
       render.canvas.width = width;
       render.canvas.height = height;
 
-      const ratio = window.devicePixelRatio;
       canvasRef.current.width = width * ratio;
       canvasRef.current.height = height * ratio;
       canvasRef.current.style.width = width + "px";
@@ -150,7 +151,7 @@ export default function Balls({ skills }: BallsProps) {
           setTimeout(() => {
             Matter.World.add(
               render.engine.world,
-              getCircleBody(constraints,skill, color),
+              getCircleBody(constraints,skill, color,ratio),
             );
           }, Math.random() * (500 - 50))
         );
