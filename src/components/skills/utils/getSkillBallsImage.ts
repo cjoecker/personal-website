@@ -36,5 +36,5 @@ export function getSkillsBallsImage(
       console.error(`${skill.skillName} has more then 2 words`);
     }
   }
-  return drawing.toDataURL('image/svg', 1.0);
+  return drawing.toDataURL('image/png', 1.0);
 }

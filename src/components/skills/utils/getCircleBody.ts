@@ -6,7 +6,7 @@ import { getSkillsBallsImage } from './getSkillBallsImage';
 
 const CIRCLES_SIZE = 3;
 const BOUNCINESS = 0.6;
-const IMG_SCALE = 1;
+const IMG_SCALE = window.devicePixelRatio;
 
 export function getCircleBody(constraints: unknown, skill: SkillsType, color: string){
     const { width } = constraints as {width: number, height: number};

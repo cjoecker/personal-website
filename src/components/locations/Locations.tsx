@@ -64,8 +64,6 @@ export default function Locations({locationEntries}:locationEntriesProps) {
           mapStyle="mapbox://styles/cjoecker/ckmpee9hy024v17o553pu11hv"
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(viewport: ViewportProps) => setViewport(viewport)}
-          dragPan={!isMobile}
-          touchAction={isMobile?'pan-y' : 'none'}
         >
           <Marker
             latitude={markerPos.latitude}

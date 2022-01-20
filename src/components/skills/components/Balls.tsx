@@ -84,6 +84,13 @@ export default function Balls({ skills }: BallsProps) {
       render.canvas.width = width;
       render.canvas.height = height;
 
+      const ratio = window.devicePixelRatio;
+      canvasRef.current.width = width * ratio;
+      canvasRef.current.height = height * ratio;
+      canvasRef.current.style.width = width + "px";
+      canvasRef.current.style.height = height + "px";
+      canvasRef.current.getContext("2d")?.scale(ratio, ratio);
+
       const topWall = render.engine.world.bodies[0];
       Matter.Body.setPosition(topWall, {
         x: width / 2,
@@ -164,7 +171,7 @@ export default function Balls({ skills }: BallsProps) {
           height: '100%',
         }}
       >
-        <canvas ref={canvasRef} />
+        <canvas ref={canvasRef}/>
       </CanvasWrapper>
 
   );
