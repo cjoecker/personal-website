@@ -12,7 +12,6 @@ export interface postion {
 }
 
 function App() {
-
   const {isMobile} = useWindowSize();
   return (
     <ThemeProvider theme={muiTheme}>
