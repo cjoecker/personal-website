@@ -4,6 +4,7 @@ import {
   abbreviateYear,
   addActualYearToLocations,
   getLastLocation,
+  getPinImagePath,
   getWeatherImagePath,
   locationUtils,
   sortLocationsByYear,
@@ -147,3 +148,31 @@ describe('getWeatherImagePath', () => {
     expect(getWeatherImagePath(1003,false)).toEqual("partlyCloudyNight.svg");
   });
 });
+
+describe('getPinImagePath', () => {
+  it('should return the right pin image for a give location year', () => {
+    const locationPinImages = [
+      {
+        fromAge: 0,
+        imageName: "baby"
+      },
+      {
+        fromAge: 5,
+        imageName: "kid"
+      },
+      {
+        fromAge: 15,
+        imageName: "adultWithHair"
+      },
+      {
+        fromAge: 25,
+        imageName: "adultWithoutHair"
+      }
+    ]
+    expect(getPinImagePath(2008,1991,locationPinImages)).toEqual("adultWithHair")
+    expect(getPinImagePath(1996,1991,locationPinImages)).toEqual("kid")
+    expect(getPinImagePath(1991,1991,locationPinImages)).toEqual("baby")
+    expect(getPinImagePath(2016,1991,locationPinImages)).toEqual("adultWithoutHair")
+    expect(getPinImagePath(2017,1991,locationPinImages)).toEqual("adultWithoutHair")
+  })
+})

@@ -1,6 +1,9 @@
 import { getYear } from 'date-fns';
 
-import { LocationsType } from '../../../constants/locations';
+import {
+  LocationPinImagesType,
+  LocationsType,
+} from '../../../constants/locations';
 import { weatherCodes } from '../../../constants/weatherCodes';
 
 interface LocationMarkType {
@@ -95,4 +98,24 @@ export function getWeatherImagePath(
   }
   const dayOrNight = isDay ? 'Day' : 'Night';
   return `${weatherCodes.get(weatherCode)}${dayOrNight}.svg`;
+}
+
+export function getPinImagePath(
+  locationYear: number,
+  bornYear: number,
+  locationPinImages: LocationPinImagesType[]
+): string | undefined {
+  const age = locationYear - bornYear;
+  const sortedPinImages = locationPinImages.sort((imgA, imgB) => {
+    return imgB.fromAge - imgA.fromAge;
+  });
+  let pinImage: LocationPinImagesType | undefined;
+  sortedPinImages.every(img => {
+    if (img.fromAge <= age) {
+      pinImage = img;
+      return false;
+    }
+    return true;
+  });
+  return pinImage?.imageName;
 }

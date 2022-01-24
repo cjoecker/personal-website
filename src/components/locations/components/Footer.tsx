@@ -21,7 +21,7 @@ export default function Footer({ location }: FooterProps) {
 
   const [imgUrl, setImgUrl] = useState('');
   const weatherCode = data?.current?.condition?.code;
-  const images = require.context('../images', false);
+  const images = require.context('../images/weather', false);
 
   useEffect(() => {
     if (images && weatherCode) {

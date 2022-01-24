@@ -1,16 +1,24 @@
 import { easeSinInOut } from 'd3-ease';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMapGL, { FlyToInterpolator, Marker } from 'react-map-gl';
 import { ViewportProps } from 'react-map-gl/dist/es5/utils/map-state';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import styled from 'styled-components';
 
-import { LocationsType } from '../../constants/locations';
+import {
+  bornYear,
+  locationPinImages,
+  LocationsType,
+} from '../../constants/locations';
 import { useEffectUnsafe } from '../../unsafeHooks';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
-import { getLastLocation, locationUtils } from './utils/locationUtils';
+import {
+  getLastLocation,
+  getPinImagePath,
+  locationUtils,
+} from './utils/locationUtils';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 const queryClient = new QueryClient();
@@ -24,11 +32,14 @@ export default function Locations({locationEntries}:locationEntriesProps) {
   const lastLocation = locationEntries[0]
   const [location, setLocation] = useState(lastLocation);
   const {isMobile} = useWindowSize();
+  const [pinImgUrl, setPinImgUrl] = useState('');
   const [viewport, setViewport] = useState<ViewportProps>({
     latitude: lastLocation.latitude,
     longitude: lastLocation.longitude,
     zoom: 15,
   });
+
+  const images = require.context('./images/pin', false);
 
   const [markerPos, setMarkerPos] = useState({
     latitude: lastLocation.latitude,
@@ -54,6 +65,14 @@ export default function Locations({locationEntries}:locationEntriesProps) {
     });
   }, [location]);
 
+  useEffect(() => {
+    if (location) {
+      setPinImgUrl(
+        images(`./${getPinImagePath(location.year, bornYear, locationPinImages)}.svg`)
+      );
+    }
+  }, [location,images]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <LocationBox isMobile={isMobile}>
@@ -71,9 +90,7 @@ export default function Locations({locationEntries}:locationEntriesProps) {
             offsetLeft={-20}
             offsetTop={-10}
           >
-            <span role={'img'} aria-label={"christian's head"}>
-              👨🏼‍🦲
-            </span>
+            <img src={pinImgUrl} width={25} height={25} alt={'author face'}/>
           </Marker>
         </ReactMapGL>
         <StyledDiv position={'top'}>

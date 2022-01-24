@@ -57,3 +57,29 @@ export const locations: LocationsType[] = [
     longitude: -0.369072,
   },
 ];
+
+export interface LocationPinImagesType {
+  fromAge: number;
+  imageName: string;
+}
+
+export const bornYear = 1991;
+
+export const locationPinImages: LocationPinImagesType[] = [
+  {
+    fromAge: 0,
+    imageName: "baby"
+  },
+  {
+    fromAge: 5,
+    imageName: "kid"
+  },
+  {
+    fromAge: 15,
+    imageName: "adultWithHair"
+  },
+  {
+    fromAge: 25,
+    imageName: "adultWithoutHair"
+  }
+]
