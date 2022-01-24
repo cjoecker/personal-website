@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/personal-website/static/css/main.4c29120f.css",
-    "main.js": "/personal-website/static/js/main.693ad4d2.js",
+    "main.js": "/personal-website/static/js/main.0bf5a23e.js",
     "static/js/651.a1846f23.chunk.js": "/personal-website/static/js/651.a1846f23.chunk.js",
     "static/media/core-values-finder.svg": "/personal-website/static/media/core-values-finder.a3c40180b6157df7ca01.svg",
     "static/media/yantramanav-latin-900.woff": "/personal-website/static/media/yantramanav-latin-900.ef9440d24f69e4247fc5.woff",
@@ -22,10 +22,14 @@
     "static/media/yantramanav-v6-latin-100.woff2": "/personal-website/static/media/yantramanav-v6-latin-100.1e1e06987f7b68af32d9.woff2",
     "static/media/yantramanav-latin-300.woff2": "/personal-website/static/media/yantramanav-latin-300.375226de943261c5b056.woff2",
     "static/media/yantramanav-v6-latin-300.woff2": "/personal-website/static/media/yantramanav-v6-latin-300.375226de943261c5b056.woff2",
+    "static/media/kid.svg": "/personal-website/static/media/kid.a86f3294c5a0ca96ba1d.svg",
+    "static/media/adultWithHair.svg": "/personal-website/static/media/adultWithHair.b72f2f5b1533e241c69c.svg",
     "static/media/d-cide.svg": "/personal-website/static/media/d-cide.cd02f0e0cda24e3c4e66.svg",
+    "static/media/baby.svg": "/personal-website/static/media/baby.71c0fa4b16707d582762.svg",
     "static/media/rainDay.svg": "/personal-website/static/media/rainDay.d10062674d90f5ad8b93.svg",
     "static/media/rainNight.svg": "/personal-website/static/media/rainNight.d10062674d90f5ad8b93.svg",
     "static/media/partlyCloudyNight.svg": "/personal-website/static/media/partlyCloudyNight.39e7c90eaa114e7fa3a6.svg",
+    "static/media/adultWithoutHair.svg": "/personal-website/static/media/adultWithoutHair.7f1394847c2cf6ef002b.svg",
     "static/media/snowDay.svg": "/personal-website/static/media/snowDay.3f1df814b539ebd186c6.svg",
     "static/media/snowNight.svg": "/personal-website/static/media/snowNight.3f1df814b539ebd186c6.svg",
     "static/media/clearNight.svg": "/personal-website/static/media/clearNight.7a206d2813143a33ef98.svg",
@@ -36,11 +40,11 @@
     "static/media/clearDay.svg": "/personal-website/static/media/clearDay.337755414b1fa471ea90.svg",
     "index.html": "/personal-website/index.html",
     "main.4c29120f.css.map": "/personal-website/static/css/main.4c29120f.css.map",
-    "main.693ad4d2.js.map": "/personal-website/static/js/main.693ad4d2.js.map",
+    "main.0bf5a23e.js.map": "/personal-website/static/js/main.0bf5a23e.js.map",
     "651.a1846f23.chunk.js.map": "/personal-website/static/js/651.a1846f23.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4c29120f.css",
-    "static/js/main.693ad4d2.js"
+    "static/js/main.0bf5a23e.js"
   ]
 }
