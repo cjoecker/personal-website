@@ -54,16 +54,15 @@ export const Canvas = ({
   }, []);
 
   const startDrawing = (event:any) => {
-    event.preventDefault();
     document.body.style.overflow = "hidden"
     contextRef.current.strokeStyle = 'white';
+    const { height } = canvasRef.current;
     let { offsetX: x, offsetY: y } = event.nativeEvent;
     if (!x || !y) {
-      x = event.targetTouches[0].pageX - constraints.left;
-      y = event.targetTouches[0].pageY - constraints.top;
-     // console.info(x, y);
-      console.info(constraints.left);
-
+      const rect = event.target.getBoundingClientRect();
+      const doc = document.documentElement;
+      x = event.targetTouches[0].pageX - (rect.left + doc.scrollLeft);
+      y = event.targetTouches[0].pageY - (rect.top + doc.scrollTop);
     }
     contextRef.current.beginPath();
     contextRef.current.lineCap = lineCap;
@@ -105,15 +104,16 @@ export const Canvas = ({
     }
   };
   const draw = (event: any) => {
-    event.preventDefault();
-    const { width } = canvasRef.current;
+    const { width, height } = canvasRef.current;
     if (!isDrawing) {
       return;
     }
     let { offsetX: x, offsetY: y } = event.nativeEvent;
     if (!x || !y) {
-      x = event.targetTouches[0].pageX - constraints.left;
-      y = event.targetTouches[0].pageY - constraints.top;
+      const rect = event.target.getBoundingClientRect();
+      const doc = document.documentElement;
+      x = event.targetTouches[0].pageX - (rect.left + doc.scrollLeft);
+      y = event.targetTouches[0].pageY - (rect.top + doc.scrollTop);
     }
     contextRef.current.lineTo(x, y);
     contextRef.current.stroke();
