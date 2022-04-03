@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/personal-website/static/css/main.4c29120f.css",
-    "main.js": "/personal-website/static/js/main.f1c68bea.js",
+    "main.js": "/personal-website/static/js/main.5bca7a22.js",
     "static/js/651.273f4b3e.chunk.js": "/personal-website/static/js/651.273f4b3e.chunk.js",
     "static/media/core-values-finder.svg": "/personal-website/static/media/core-values-finder.a3c40180b6157df7ca01.svg",
     "static/media/yantramanav-latin-900.woff": "/personal-website/static/media/yantramanav-latin-900.ef9440d24f69e4247fc5.woff",
@@ -45,11 +45,11 @@
     "static/media/pt.svg": "/personal-website/static/media/pt.a200ca6eb1492976c51e.svg",
     "static/media/de.svg": "/personal-website/static/media/de.c8e11cd99401b4894283.svg",
     "main.4c29120f.css.map": "/personal-website/static/css/main.4c29120f.css.map",
-    "main.f1c68bea.js.map": "/personal-website/static/js/main.f1c68bea.js.map",
+    "main.5bca7a22.js.map": "/personal-website/static/js/main.5bca7a22.js.map",
     "651.273f4b3e.chunk.js.map": "/personal-website/static/js/651.273f4b3e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4c29120f.css",
-    "static/js/main.f1c68bea.js"
+    "static/js/main.5bca7a22.js"
   ]
 }
