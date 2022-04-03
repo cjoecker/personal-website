@@ -6,18 +6,20 @@ import Locations from '../locations/Locations';
 import { locations } from '../../constants/locations';
 import { Skills } from '../skills/Skills';
 import { skills } from '../../constants/skills';
-import { AppsMenu } from '../apps-menu/AppsMenu';
+import { OtherApps } from '../other-apps/OtherApps';
 import { ZIndexProvider } from './components/ZIndexProvider';
 import { postion } from '../../App';
 import styled from 'styled-components';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { useEffectUnsafe } from '../../unsafeHooks';
+import { Languages } from '../languages/Languages';
 
 interface startPositions {
   title: postion;
   locations: postion;
   skills: postion;
   ownApps: postion;
+  languages: postion;
 }
 export type HorizontalViewProps = {
 
@@ -30,26 +32,33 @@ export const HorizontalView = ({}: HorizontalViewProps) => {
   const locationsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const ownAppsRef = useRef<HTMLDivElement>(null);
+  const languagesRef = useRef<HTMLDivElement>(null);
   const {browserWidth, browserHeight} = useWindowSize();
 
   useEffectUnsafe(() => {
     const width = window.innerWidth;
+    const height = window.innerHeight;
     setPositions({
       title: {
-        x: width * 0.5 - (titleRef.current?.offsetWidth ?? 0) / 2,
-        y: 30,
+        x: getWidthCenter(width, titleRef),
+        y: getHeightCenter(height, titleRef) - 300
       },
       locations: {
-        x: 30,
-        y: 40,
+        x: getWidthCenter(width, locationsRef) + 570,
+        y: getHeightCenter(height, locationsRef) - 100
       },
       skills: {
-        x: width - (skillsRef.current?.offsetWidth ?? 0) - 30,
-        y: (titleRef.current?.offsetHeight ?? 0) + 40,
+        x: getWidthCenter(width, skillsRef) - 500,
+        y: getHeightCenter(height, skillsRef) -30
+
       },
       ownApps: {
-        x: width / 2 - (ownAppsRef.current?.offsetWidth ?? 0),
-        y: (titleRef.current?.offsetHeight ?? 0) + 70,
+        x: getWidthCenter(width, ownAppsRef) + 130,
+        y: getHeightCenter(height, ownAppsRef) + 120
+      },
+      languages: {
+        x: getWidthCenter(width, languagesRef) - 20,
+        y: getHeightCenter(height, languagesRef) - 100
       },
     });
   }, [browserWidth, browserHeight]);
@@ -78,7 +87,14 @@ export const HorizontalView = ({}: HorizontalViewProps) => {
           tileName={'Own apps'}
           ref={ownAppsRef}
         >
-          <AppsMenu />
+          <OtherApps />
+        </DraggabableContainer>
+        <DraggabableContainer
+          position={positions?.languages}
+          tileName={'Languages'}
+          ref={languagesRef}
+        >
+          <Languages />
         </DraggabableContainer>
       </DragContainer>
     </ZIndexProvider>
@@ -92,3 +108,11 @@ const DragContainer = styled.div`
   height: 100%;
   overflow: hidden;
 `;
+
+function getHeightCenter(windowHeight: number, elementRef: React.RefObject<HTMLElement>) {
+  return windowHeight * 0.5 - (elementRef.current?.offsetHeight ?? 0) / 2
+}
+
+function getWidthCenter(windowWidth: number, elementRef: React.RefObject<HTMLElement>) {
+  return windowWidth * 0.5 - (elementRef.current?.offsetWidth ?? 0) / 2
+}

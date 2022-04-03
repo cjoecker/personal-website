@@ -8,11 +8,10 @@ import { ownApps } from '../../constants/ownApps';
 
 import { IconButton } from './components/IconButton';
 
-export type AppsDashboardProps = {};
-export const AppsMenu = ({}: AppsDashboardProps) => {
+export const OtherApps = () => {
   const [items, setItems] = useState(() => ownApps.map(app => app.name));
   return (
-    <ContainerWrapper >
+    <ContainerWrapper>
       <MenuContainer axis="x" values={items} onReorder={setItems}>
         {items.map(item => (
           <IconButton key={item} item={item} />

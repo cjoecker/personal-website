@@ -41,8 +41,9 @@ const muiThemeOptions: MuiThemeOptions = {
       fontSize: 12,
     },
     body1: {
-      fontWeight: 100,
+      fontWeight: 300,
       fontSize: 16,
+      lineHeight: 1
     },
     body2: {
       fontWeight: 100,

@@ -5,8 +5,9 @@ import { locations } from '../../constants/locations';
 import Locations from '../locations/Locations';
 import { skills } from '../../constants/skills';
 import { Skills } from '../skills/Skills';
-import { AppsMenu } from '../apps-menu/AppsMenu';
+import { OtherApps } from '../other-apps/OtherApps';
 import { MobileContainer } from './components/MobileContainer';
+import { Languages } from '../languages/Languages';
 
 export type MobileViewProps = {};
 export const MobileView = ({}: MobileViewProps) => {
@@ -21,8 +22,11 @@ export const MobileView = ({}: MobileViewProps) => {
       <MobileContainer tileName={'Skills'} >
         <Skills skills={skills} />
       </MobileContainer>
+      <MobileContainer tileName={'Languages'}>
+        <Languages />
+      </MobileContainer>
       <MobileContainer tileName={'Own apps'}>
-        <AppsMenu />
+        <OtherApps />
       </MobileContainer>
 
     </MainContainer>
